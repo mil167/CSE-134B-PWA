@@ -1,0 +1,82 @@
+<!-- Test the script, noscript, template and canvas tags in a single or multiple documents. Three of these tags will not do anything without script code so you are free to use a small amount of vanilla JS (no libraries including jQuery) to perform your tests. To test the canvas tag draw a cat or a soccer ball on your canvas using simple code.
+ -->
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Scripts</title>
+  <meta charset="utf-8"/>
+  <link rel="stylesheet" type="text/css" href="main.css">
+</head>
+<body>
+  <p>
+    <a href="https://validator.w3.org/check?uri=referer"><img
+        src="http://www.w3.org/Icons/valid-xhtml10"
+        alt="Valid XHTML 1.0!" height="31" width="88" /></a>
+  </p>
+
+<header>CSE 134B 2017 fall_hw2_Script
+  <ul>
+  <li>Yiyuan Ma, A53239076
+  <li>Michael Li,
+  <li>Glynn Williams,
+</ul>
+</header>
+<hr>
+
+
+<p>Here is the test for the <i>script</i> tag: </p>
+<p id="cat"></p>
+<script>
+document.getElementById("cat").innerHTML = "JavaScript also wants a kitten!";
+</script>
+<hr>
+
+<p>Here is the test for the <i>nonscript</i> tag: </p>
+<p>(* A browser without support for JavaScript will show the text inside the noscript element. *) </p>
+<noscript>Sorry, your browser does not support JavaScript!</noscript>
+<hr>
+
+<p>Here comes the use of <i>template</i> tag: <br> The template will be used to count cats being adopted</p>
+<button onclick="useIt()">Adopt a cat!</button>
+<div id="container"></div>
+<script>
+  function useIt() {
+    var content = document.querySelector('template').content;
+    // Update something in the template DOM.
+    var span = content.querySelector('span');
+    span.textContent = parseInt(span.textContent) + 1;
+    document.querySelector('#container').appendChild(
+        document.importNode(content, true));
+  }
+</script>
+
+<template>
+  <div>Cats adopted: <span>0</span></div>
+  <script>alert('Thank you for giving the cutie a home!')</script>
+</template>
+<hr>
+
+
+<p>Here comes the test for <i>canvas</i> tag:<br> I will put a picture of cat into the canvas.</p>
+
+<p>Image to use:</p>
+<img id="canvascat" width="300" height="320" src="Canvas_Cat.jpg" alt="The Cat">
+
+
+<p>Canvas:</p>
+<canvas id="myCanvas" width="600" height="650" style="border:1px solid #000000;">
+Your browser does not support the HTML5 canvas tag.
+</canvas>
+
+<script>
+window.onload = function() {
+    var canvas = document.getElementById("myCanvas");
+    var ctx = canvas.getContext("2d");
+    var img = document.getElementById("canvascat");
+   ctx.drawImage(img, 2, 2);
+};
+</script>
+
+</body>
+</html>

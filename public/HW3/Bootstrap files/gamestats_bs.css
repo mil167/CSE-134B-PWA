@@ -1,0 +1,59 @@
+body{
+}
+
+h1{
+  text-align: center;
+  background-color:grey;
+  -webkit-margin-before:unset;
+  padding:0.5em 0;
+}
+
+#score{
+  text-align: center;
+}
+
+#highlights{
+  margin: 0 2%;
+}
+
+tr *{
+  text-align: center;
+}
+
+#vods{
+  width:100%;
+  display:inline-flex;
+}
+
+#vods > a{
+  margin:auto;
+}
+
+footer{
+    text-align: center;
+    height: 40%;
+    width: 100%;
+    font-family: 'Apple Chancery';
+    font-size: 1.5em;
+   /* border: 1px solid blue;*/
+}
+
+footer li{
+    display: inline-block;
+    margin:auto;
+		width: 20%;
+    padding:1em;
+    border:0.1em dashed black;
+		background-color:lightblue;
+}
+
+footer ul{
+	-webkit-padding-start:0;
+}
+
+a:hover {
+    color: red;
+    background-color: transparent;
+    text-decoration: underline;
+}
+

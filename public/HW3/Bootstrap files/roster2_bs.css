@@ -1,0 +1,52 @@
+/*
+roster2_bs.css
+File size: 585 byte
+Load time:
+
+Pass the CSS validation.
+*/
+
+
+body {
+  padding-top: 54px;
+}
+
+@media (min-width: 992px) {
+  body {
+    padding-top: 56px;
+  }
+}
+
+footer{
+    text-align: center;
+    height: 40%;
+    width: 100%;
+    font-family: 'Apple Chancery';
+    font-size: 1.5em;
+   /* border: 1px solid blue;*/
+}
+
+footer li{
+    display: inline-block;
+    margin:auto;
+		width: 20%;
+    padding:1em;
+    border:0.1em dashed black;
+		background-color:lightblue;
+}
+
+footer ul{
+	-webkit-padding-start:0;
+}
+
+footer p{
+	text-align: center;
+	font-size: 14pt;
+}
+
+a:hover {
+    color: red;
+    background-color: transparent;
+    text-decoration: underline;
+}
+

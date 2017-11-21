@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+  div {
+    width: 200px;
+    height: 100px;
+    border: 1px solid black;
+  }
+</style>
+  <title>Event Attributes</title>
+  <meta charset="utf-8"/>
+  <link rel="stylesheet" type="text/css" href="main.css">
+</head>
+<body>
+  <p id="omd" onmousedown="mouseDown()" onmouseup="mouseUp()">
+    Click the text if you're a true cat fanatic. Otherwise go ahead leave your font as a boring color.
+  </p>
+
+  <script>
+  function mouseDown() {
+    document.getElementById("omd").style.color="orange";
+  }
+  function mouseUp() {
+    document.getElementById("omd").style.color="pink";
+  }
+  </script>
+
+  <img onmouseenter="large(this)" onmouseleave="original(this)" src="hqdefault.jpg" alt="surprise" width="100" height="100">
+  <script>
+  function large(i) {
+    i.style.height="500px";
+    i.style.width="500px";
+  }
+  function original(i){
+    i.style.height="100px";
+    i.style.width="100px";
+  }
+  </script>
+  <br>
+  <img onmouseover="big(this)" onmouseout="regular(this)" src="Keyboard_cat.jpg" alt="keyboard" width="100" height="100">
+  <script>
+  function big(i) {
+    i.style.height="200px";
+    i.style.width="200px";
+  }
+  
+  function regular(j) {
+    j.style.height="100px";
+    j.style.width="100px";
+  }
+  </script>
+
+  <br>
+  <div onmousemove="testing(event)"></div>
+
+  <p id="demo"></p>
+
+  <script>
+  function testing(e) {
+    var x = e.clientX;
+    var y = e.clientY;
+    var coor = "Coordinates: (" + x + "," + y + ")";
+    document.getElementById("demo").innerHTML = coor;
+  }
+  </script>
+  <!--onmousewheel doesn't validate. says that div cannot have this attribute at this point-->
+  <div id="yes" onmousewheel="tester()">Roll the mouse wheel up like a cat rolls on the floor</div>
+  <script>
+  function tester() {
+    document.getElementById("yes").style.fontSize="50px";
+  }
+  </script>
+  
+  <form onreset="resetField()">
+    Enter your name: <input type="text">
+    <input type="reset">
+  </form>
+  
+  <script>
+  function resetField() {
+    alert("A mischievous cat just cleared your form!");
+  }
+  </script>
+
+  Highlight some text: <input type="text" value="Highlight it if you dare..." onselect="fun()">
+  <script>
+  function fun() {
+    alert("Paws off my text! Meow.");
+  }
+  </script>
+
+  <form onsubmit="good()">
+    Who is your favorite cat? <input type="text" name="cat">
+    <input type="submit" value="Submit">
+  </form>
+ 
+  <script>
+  function good() {
+    alert("That's right, it better be me. Meow.");
+  }
+  </script>
+</body>
+</html>

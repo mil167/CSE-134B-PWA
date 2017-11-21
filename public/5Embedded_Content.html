@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Cat Pics</title>
+    <meta charset="utf-8">
+  </head>
+  <body>
+    <p>
+      <a href="https://validator.w3.org/check?uri=referer"><img
+          src="http://www.w3.org/Icons/valid-xhtml10"
+          alt="Valid XHTML 1.0!" height="31" width="88" /></a>
+    </p>
+    <h2>Default cat pic size</h2>
+    <img src="Media/killer_queen_1.jpg" alt="bigcat">
+    <h2>Width=100 Height=100 cat pic</h2>
+    <img src="Media/killer_queen_1.jpg" width="100" height="100" alt="smallcat">
+    <h2>Bad cat pic</h2>
+    <img src="not_a_real_cat_pic.jpg" alt="This should appear because the cat picture doesn't exist anywhere but in your head">
+
+    <h2>Some cat info in an iframe</h2>
+    <iframe src="https://en.wikipedia.org/wiki/Cat" width="600" height="400"></iframe>
+
+    <h2>Embedded cat game</h2>
+    <embed src="Media/chatnoir.swf" width="400" height="400"></embed>
+
+    <h2>Cat animation using object tag</h2>
+    <object width="400" height="400" data="Media/deviantartcat.swf"></object>
+
+    <h2>Same animation without looping</h2>
+    <object width="400" height="400" data="Media/deviantartcat.swf">
+      <param name="loop" value="false">
+    </object>
+
+    <h2>Cat man theme</h2>
+    <audio controls>
+      <source src="Media/kira_theme.mp3" type="audio/mp3">
+    </audio>
+
+    <h2>"Cute" cat video</h2>
+    <video autoplay loop>
+      <source src="Media/killer_queen_2.mp4" type="video/mp4">
+      video not available
+    </video>
+
+    <h2>Click on the spirit cat to be taken to a theme song</h2>
+    <img src="Media/killer_queen_4.jpg" width="300" height="300" usemap="#kiratheme" alt="spiritcat">
+    <map name="kiratheme">
+      <area rect coords="120,20,300,150" href="https://www.youtube.com/watch?v=Fr93X8856Vg" alt="catsection">
+    </map>
+  </body>
+</html>

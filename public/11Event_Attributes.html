@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <style>
+      div {
+        width: 200px;
+        height: 100px;
+        border: 1px solid black;
+      }
+    </style>
+    <title>Cat Events Part 1</title>
+    <meta charset="utf-8">
+  </head>
+  <body onscroll="scrollCall()">
+    <p>
+      <a href="https://validator.w3.org/check?uri=referer"><img
+          src="http://www.w3.org/Icons/valid-xhtml10"
+          alt="Valid XHTML 1.0!" height="31" width="88" /></a>
+    </p>
+    <script>function scrollCall(){console.log("SCROLLED");}</script>
+    <h2>onerror</h2>
+    <img src="doesnt_exist.jpg" id="notapic" onerror="notLoaded()" alt="This image doesn't exist and should alert when trying to load">
+    <script>function notLoaded(){ alert('doesnt_exist.jpg could not be loaded');}</script>
+
+    <h2>onfocus + onblur + onchange + oninput</h2>
+    <p>Type some text here <input type="text" id="catText" onfocus="clearText()" onblur="stealText()" onchange="outputTyped()" oninput="willSteal()"></p>
+    <p id="stolen"></p>
+    <script>
+    function clearText(){
+      var textBox = document.getElementById("catText");
+      textBox.value = "";
+    }
+    function stealText(){
+      var textBox = document.getElementById("catText");
+      textBox.value = "sneaky cat stole your text ;3";
+      var stolen = document.getElementById("stolen");
+      stolen.innerHTML = "";
+    }
+    function outputTyped(){
+      var textBox = document.getElementById("catText");
+      console.log("onchange triggered: " + textBox.value);
+    }
+    function willSteal(){
+      var textBox = document.getElementById("catText");
+      var stolen = document.getElementById("stolen");
+      stolen.innerHTML = "the cat will steal " + textBox.value;
+    }
+    </script>
+
+    <h2>onclick + ondblclick</h2>
+    <img src="Media/killer_queen_5.jpg" id="killerqueenpic" onclick="changePic()" ondblclick="changeBack()" alt="click to change pic, double click to change back">
+    <script>
+    function changePic(){
+      var pic = document.getElementById("killerqueenpic");
+      pic.src="Media/killer_queen_6.jpg";
+    }
+    function changeBack(){
+      var pic = document.getElementById("killerqueenpic");
+      pic.src="Media/killer_queen_5.jpg";
+    }
+    </script>
+
+    <h2>oninvalid</h2>
+    <form action="https://httpbin.org/anything" method="get">
+      <p> Fill this out:
+        <input type=text oninvalid="inval()" name="thing" required>
+        <input type="submit" value="Submit">
+      </p>
+    </form>
+    <script>function inval(){ alert("Wow. Can't even follow basic instructions? Disgraceful.");}</script>
+
+
+    <h2>onkeydown + onkeyup</h2>
+    <img id="kq1" src="Media/killer_queen_1.jpg" alt="killer queen again (or maybe deadly queen?)">
+    <p>Select this input and hold a key to see the true thoughts <input type="text" onkeydown="imgKeyDown()" onkeyup="imgKeyUp()"></p>
+    <script>
+    function imgKeyDown(){
+      var pic = document.getElementById("kq1");
+      pic.src="Media/killer_queen_7.jpg";
+    }
+    function imgKeyUp(){
+      var pic = document.getElementById("kq1");
+      pic.src="Media/killer_queen_1.jpg";
+    }
+    </script>
+    <h2>onkeypress</h2>
+    <p>This cat steals your letters as you type: <input type="text" id="canttype" onkeypress="vanish()"></p>
+    <script>function vanish(){document.getElementById("canttype").value="";}</script>
+
+    <h2>onload</h2>
+    <object data="Media/kira_theme.mp3" onload="pageLoaded()">
+      <param name="control" value="true">
+    </object>
+    <script>function pageLoaded(){alert("audio finished loading!");}</script>
+
+
+    <p id="omd" onmousedown="mouseDown()" onmouseup="mouseUp()">
+      Click the text if you're a true cat fanatic. Otherwise go ahead leave your font as a boring color.
+    </p>
+
+    <script>
+    function mouseDown() {
+      document.getElementById("omd").style.color="orange";
+    }
+    function mouseUp() {
+      document.getElementById("omd").style.color="pink";
+    }
+    </script>
+
+    <img onmouseenter="large(this)" onmouseleave="original(this)" src="hqdefault.jpg" alt="surprise" width="100" height="100">
+    <script>
+    function large(i) {
+      i.style.height="500px";
+      i.style.width="500px";
+    }
+    function original(i){
+      i.style.height="100px";
+      i.style.width="100px";
+    }
+    </script>
+    <br>
+    <img onmouseover="big(this)" onmouseout="regular(this)" src="Keyboard_cat.jpg" alt="keyboard" width="100" height="100">
+    <script>
+    function big(i) {
+      i.style.height="200px";
+      i.style.width="200px";
+    }
+
+    function regular(j) {
+      j.style.height="100px";
+      j.style.width="100px";
+    }
+    </script>
+
+    <br>
+    <div onmousemove="testing(event)"></div>
+
+    <p id="demo"></p>
+
+    <script>
+    function testing(e) {
+      var x = e.clientX;
+      var y = e.clientY;
+      var coor = "Coordinates: (" + x + "," + y + ")";
+      document.getElementById("demo").innerHTML = coor;
+    }
+    </script>
+    <!--onmousewheel doesn't validate. says that div cannot have this attribute at this point-->
+    <div id="yes" onmousewheel="tester()">Roll the mouse wheel up like a cat rolls on the floor</div>
+    <script>
+    function tester() {
+      document.getElementById("yes").style.fontSize="50px";
+    }
+    </script>
+
+    <form onreset="resetField()">
+      Enter your name: <input type="text">
+      <input type="reset">
+    </form>
+
+    <script>
+    function resetField() {
+      alert("A mischievous cat just cleared your form!");
+    }
+    </script>
+
+    Highlight some text: <input type="text" value="Highlight it if you dare..." onselect="fun()">
+    <script>
+    function fun() {
+      alert("Paws off my text! Meow.");
+    }
+    </script>
+
+    <form onsubmit="good()">
+      Who is your favorite cat? <input type="text" name="cat">
+      <input type="submit" value="Submit">
+    </form>
+
+    <script>
+    function good() {
+      alert("That's right, it better be me. Meow.");
+    }
+    </script>
+  </body>
+</html>

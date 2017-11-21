@@ -1,0 +1,98 @@
+/*
+roster1.css
+File size: 1KB
+Load time:
+
+Pass the CSS validation, but with 4 warnings:
+37      can't find the warning message for vendor-extension
+38      can't find the warning message for vendor-extension
+47      can't find the warning message for vendor-extension
+48      can't find the warning message for vendor-extensionion
+
+*/
+
+* {
+    box-sizing: border-box;
+}
+
+html{
+    width: 50%;
+}
+
+body {
+    /*margin: 2% 5%;
+    padding: 3%;*/
+    /*border: 1px double black;*/
+    /*background-color:;*/
+}
+
+.player{
+    display: inline-block;
+    margin: 10px;
+}
+
+.photo{
+    width: 100px;
+    height: 100px;
+    -moz-border-radius: 50px;
+    -webkit-border-radius: 50px;
+    border-radius: 50px;
+    background-color: yellow;
+    float:left;
+}
+
+.photo img{
+    width: 100px;
+    height: 100px;
+    -moz-border-radius: 50px;
+    -webkit-border-radius: 50px;
+    border-radius: 50px;
+}
+
+.breif{
+    width: 200px;
+    height: 90px;
+    border: 1px solid black;
+    margin: 10px;
+    font-size:15px;
+    float:right;
+}
+
+.breif ul {
+  list-style: none;
+}
+
+.breif ul li:before {
+  content: '✓';
+  padding-right: 5px;
+}
+
+
+footer{
+    text-align: center;
+    height: 40%;
+    width: 100%;
+    font-family: 'Apple Chancery';
+    font-size: 1.5em;
+   /* border: 1px solid blue;*/
+}
+
+footer li{
+    display: inline-block;
+    margin:auto;
+		width: 20%;
+    padding:1em;
+    border:0.1em dashed black;
+		background-color:lightblue;
+}
+
+footer ul{
+	-webkit-padding-start:0;
+}
+
+a:hover {
+    color: red;
+    background-color: transparent;
+    text-decoration: underline;
+}
+

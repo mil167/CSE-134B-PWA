@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Forms</title>
+  <meta charset="utf-8"/>
+  <link rel="stylesheet" type="text/css" href="main.css">
+</head>
+<body>
+  <p>
+    <a href="https://validator.w3.org/check?uri=referer"><img
+        src="http://www.w3.org/Icons/valid-xhtml10"
+        alt="Valid XHTML 1.0!" height="31" width="88" /></a>
+  </p>
+  <form action="cat_central.php">
+  <p><strong>Cat Info</strong></p>
+  Cat name: <input type="text" name="Cat Name" value="Garfield"><br>
+  Owner: <input type="text" name="Owner" value="Jon"><br>
+  <input type="hidden" name="SSN" value="1234">
+
+  <p>Select your cat's favorite color:</p>
+
+  <label for="red">Red</label>
+  <input type="radio" name="color" id="red" value="red"><br>
+  <label for="blue">Blue</label>
+  <input type="radio" name="color" id="blue" value="blue"><br>
+  <label for="yellow">Yellow</label>
+  <input type="radio" name="color" id="yellow" value="yellow"><br>
+  <br>
+
+  <p>Select how fat your cat is</p>
+  <select>
+    <optgroup label="Fat">
+      <option value="fat">Fat</option>
+    </optgroup>
+    <optgroup label="Skinny">
+      <option value="skinny">Skinny</option>
+    </optgroup>
+    <optgroup label="Both">
+      <option value="both">Both</option>
+    </optgroup>
+  </select>
+
+  <p>Enter your cat's favorite foods</p>
+  <input list="foods" name="food">
+  <datalist id="foods">
+    <option value="Catnip">
+    <option value="Milk">
+    <option value="Fish">
+    <option value="Trash">
+  </datalist>
+
+  <p>Enter your cat's favorite website:</p>
+  URL: <input type="url" name="caturl"><br>
+
+  <p>Enter your cat's date of birth:, i.e. mm-dd-yyyy</p>
+  DOB: <input type="date" name="dob"><br>
+
+  <p>What time is your next appointment to the vet?</p>
+  Time: <input type="time" name="appt"><br>
+
+  <p>On a scale of 1 to 5, how much do you love your cat, 5 being the highest?</p>
+  Choose a number between 1 and 5: <input type="number" name="love"><br>
+
+  <p>If you want, go ahead and share with us a picture of your furry friend!</p>
+  Select a picture: <input type="file" name="pic">
+
+  <p><strong>Personal Info:</strong></p>
+
+  <p>Please enter your telephone number:</p>
+  Telephone: <input type="tel" name="tele"><br>
+
+  <p>Please enter a valid email address:</p>
+  Email: <input type="email" name="emaila"><br>
+
+  <p>Choose a password</p>
+  Password: <input type="password" name="pass"><br>
+
+  <p>To prove you aren't a robot cat, drag the cursor to the middle</p>
+  Meow: <input type="range" name="robo" min="0" max="10"><br>
+
+  <p>Check all that apply:</p>
+  <input type="checkbox" name="q1" value="none">I have no cats<br>
+  <input type="checkbox" name="q2" value="one">I have one cat<br>
+  <input type="checkbox" name="q3" value="more">I have more than one cat<br>
+
+  <p>Just one more step, choose the color red.</p>
+  Select red: <input type="color" name="red"><br>
+
+  <input type="submit" value="Submit">
+
+  <p>Click reset to clear all fields</p>
+  <input type="reset" value="Reset"><br>
+
+  <p>Click the pawprint to return to the homepage</p>
+  <input type="image" src="390542-200.png" alt="Return" width="50" height="50">
+  </form>
+
+  <p>Click here to do absolutely nothing</p>
+  <input type="button" value="Click here"><br>
+
+  <p>Please read this message</p>
+  <textarea rows="1" cols="20">
+  Meow meow meow meow.
+  </textarea>
+  <br>
+
+  <button type="button" onclick="alert('Buy some Meow Mix')">Just do it!</button>
+  <form oninput="x.value=parseInt(a.value)+parseInt(b.value)">0
+    <input type="range" id="a" value="50">100
+    +<input type="number" id="b" value="50">
+    =<output name="x" for="a b"></output>
+
+
+  Form completion progress:
+  <progress value="4" max="100">
+  </progress>
+
+  <p>Cat happiness meter</p>
+  <meter value="15" min="0" max="100">15 out of 100</meter><br>
+
+  <fieldset>
+    <legend>Enter your city and state:</legend>
+    City: <input type="text"><br>
+    State: <input type="text"><br>
+  </fieldset>
+  </form>
+
+  <a href="https://validator.w3.org/nu/?doc=http%3A%2F%2Fclasses.pint.com%2Fcse134b%2F#file" accesskey="h">W3Validator</a><br>
+</body>
+</html>

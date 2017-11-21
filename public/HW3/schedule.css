@@ -1,0 +1,70 @@
+.matchLog{
+	padding:0.5em;
+	margin:1em;
+	background-color: lightgrey;
+}
+
+.matchLog *{
+	text-align: center;
+	margin: 2% 5%;
+}
+
+.matchLog ol{
+	list-style-type: none;
+	-webkit-padding-start: unset;
+}
+
+.matchLog h1{
+	font-size:4em;
+}
+
+.matchLog li{
+	margin: 0.5em 0;
+	padding: 0.5em 0;
+	border: black;
+	border-style: double;
+	background-color: rgb(255,255,150);
+}
+
+.matchLog .matchWon{
+	background-color: lightgreen;
+}
+
+.matchLog .matchLost{
+	background-color: lightsalmon;
+}
+
+
+#previous a{
+  float: right;
+	margin: 0 5%;
+}
+
+footer{
+    text-align: center;
+    height: 40%;
+    width: 100%;
+    font-family: 'Apple Chancery';
+    font-size: 1.5em;
+   /* border: 1px solid blue;*/
+}
+
+footer li{
+    display: inline-block;
+    margin:auto;
+		width: 20%;
+    padding:1em;
+    border:0.1em dashed black;
+		background-color:lightblue;
+}
+
+footer ul{
+	-webkit-padding-start:0;
+}
+
+a:hover {
+    color: red;
+    background-color: transparent;
+    text-decoration: underline;
+}
+

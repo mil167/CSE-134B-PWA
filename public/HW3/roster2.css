@@ -1,0 +1,136 @@
+/*
+roster2.css
+File size: 2KB
+Load time:
+
+Pass the CSS validation, but with 4 warnings:
+48      can't find the warning message for vendor-extension
+49      can't find the warning message for vendor-extension
+59      can't find the warning message for vendor-extension
+60      can't find the warning message for vendor-extension
+*/
+
+* {
+    box-sizing: border-box;
+}
+
+html{
+    width: 50%;
+}
+
+body {
+    /*margin: 2% 5%;
+    padding: 3%;*/
+   /* border: 1px double black;*/
+    margin: 10px;
+    /*background-color: yellow;*/
+}
+
+main{
+    margin: 20px;
+}
+
+#playerProfile{
+    display: inline-block;
+
+    margin: 10px;
+    /*border:1px solid black;*/
+    /*background-color: yellow;*/
+    float:left;
+
+
+}
+
+#photo{
+    width: 100px;
+    height: 100px;
+    -moz-border-radius: 50px;
+    -webkit-border-radius: 50px;
+    border-radius: 50px;
+    background-color: yellow;
+    float:left;
+    /*border:1px solid black;*/
+}
+
+#photo img{
+    width: 100px;
+    height:100px;
+    -moz-border-radius: 50px;
+    -webkit-border-radius: 50px;
+    border-radius: 50px;
+}
+
+#info{
+    width: 200px;
+    height: 100px;
+    /*border: 1px solid black;*/
+    margin: 10px;
+    font-size: 10px;
+    float:right;
+    margin-bottom: 25px;
+    list-style-type: '-';
+}
+
+#info ul {
+  list-style: none;
+}
+
+#info ul li:before {
+  content: '✓';
+  padding-right: 5px;
+}
+
+#outsidelink{
+    position: absolute;
+    top: 10px;
+    right: 52%;
+    font-size: 12px;
+    font-family: 'Apple Chancery';
+    text-decoration: underline;
+}
+
+#statistics{
+   /* border: 1px solid black;*/
+   margin: 20px;
+   /*background-color: pink;*/
+
+}
+
+#upcoming{
+    /*border: 1px solid black;*/
+    margin: 20px;
+    /*background-color: blue;*/
+}
+
+#upcoming li a{
+    font-style: italic;
+}
+
+footer{
+    text-align: center;
+    height: 40%;
+    width: 100%;
+    font-family: 'Apple Chancery';
+    font-size: 1.5em;
+   /* border: 1px solid blue;*/
+}
+
+footer li{
+    display: inline-block;
+    margin:auto;
+		width: 20%;
+    padding:1em;
+    border:0.1em dashed black;
+		background-color:lightblue;
+}
+
+footer ul{
+	-webkit-padding-start:0;
+}
+
+a:hover {
+    color: red;
+    background-color: transparent;
+    text-decoration: underline;
+}
+

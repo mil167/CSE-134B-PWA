@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Other Tags</title>
+  <meta charset="utf-8"/>
+  <link rel="stylesheet" type="text/css" href="main.css">
+</head>
+<body>
+  <p>
+    <a href="https://validator.w3.org/check?uri=referer"><img
+        src="http://www.w3.org/Icons/valid-xhtml10"
+        alt="Valid XHTML 1.0!" height="31" width="88" /></a>
+  </p>
+
+<hr>
+<p>Here is a <i>textarea</i> tag to control the area of input:</p>
+<p>If you have any short comments, please let us know: <textarea cols=80 name=comments maxlength=200></textarea></p>
+
+<hr>
+<p>Here is a <i>menu</i> tag displaying cat's dinner menu:</p>
+<menu>
+ <li>cat food 1</li>
+ <li>cat food 2</li>
+ <li>cat food 3</li>
+</menu>
+
+<hr>
+<p>Here is a <i>fieldset</i> tag to control the customer sign-in in a pet store:</p>
+<fieldset name="clubfields" disabled>
+ <legend> <label>
+  <input type=checkbox name=club onchange="form.clubfields.disabled = !checked">
+  Have a PetSmart Card
+ </label> </legend>
+ <p><label>Name on card: <input name=clubname required></label></p>
+</fieldset>
+
+<hr>
+<p>Here are <i>optgroup</i> tag and <i>option</i> tag to realize scroll down choices for cat's activity:</p>
+<p>Which activity would you like to do with you cat today?
+ <p><label>Activities:
+ <select name="c">
+   <optgroup label="Indoor">
+    <option value="1.1">Play with the box
+    <option value="1.2">Play with the carpet
+   <optgroup label="Outdoor">
+    <option value="2.1">Smell the flower
+    <option value="2.2">Play with other cats
+	 </select>
+ </label>
+
+<hr>
+<p>Here is a <i>wbr</i> tag to seperate a long sentence:</p>
+ <p>So then she pointed at the tiger and screamed
+"there<wbr>is<wbr>no<wbr>way<wbr>you<wbr>are<wbr>ever<wbr>going<wbr>to<wbr>catch<wbr>me"!</p>
+
+
+
+<hr>
+<p>Here is a <i>progress</i> tag to demonstrate the progress of cat-caring work:</p>
+<section>
+ <h2>Task Progress</h2>
+ <p>Progress: <progress id="p" max=100><span>0</span>%</progress></p>
+ <script>
+  var progressBar = document.getElementById('p');
+  function updateProgress(newValue) {
+    progressBar.value = newValue;
+    progressBar.getElementsByTagName('span')[0].textContent = newValue;
+  }
+ </script>
+</section>
+
+
+<hr>
+<p>Here is a <i>strike</i> tag:</p>
+<p>Version 2.0 of our site is <strike> now available!</strike>not yet available!</p>
+
+<hr>
+<p>Here are <i>details</i> tag and <i>summary</i> tag:</p>
+<details>
+  <summary>Copyright 2017-2017.</summary>
+  <p>All content and graphics on this page are made up out of nowhere.</p>
+</details>
+
+<hr>
+<p>A marquee tag, as shown in class</p>
+<marquee>WOW! A MARQUEE!!!!!</marquee>
+
+</body>
+</html>

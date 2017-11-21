@@ -1,0 +1,6 @@
+ten findings
+(global) translate doesn't work on any of the popular browsers today.
+(text level) i was confused as to when we would ever use the ruby element. 
+(text level) code samp and kbd all look exactly the same. is there any significant difference between the 3?
+(forms) i was confused as to why there are so many states for input. why not just use text to replace some of them such as email, password, url, etc.?
+(embedded content) in order to properly use the <map> and <area> tags on an image, I need to create a map with name=”something” and then use usemap=”#something” inside the img tag

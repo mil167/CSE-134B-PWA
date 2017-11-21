@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+thead {color:blue;}
+tbody {color:yellow;}
+tfoot {color:white;}
+
+table, th, td {
+  border: 1px solid black;
+}
+</style>
+  <title>Tables</title>
+  <meta charset="utf-8"/>
+  <link rel="stylesheet" type="text/css" href="main.css">
+</head>
+<body>
+  <p>
+    <a href="https://validator.w3.org/check?uri=referer"><img
+        src="http://www.w3.org/Icons/valid-xhtml10"
+        alt="Valid XHTML 1.0!" height="31" width="88" /></a>
+  </p>
+  <table>
+    <caption>Comparing types of cats and their costs</caption>
+    <colgroup>
+      <col span="1" style=background-color:red >
+      <col style="background-color:green">
+    </colgroup>
+    <thead>
+    <tr>
+      <th>Cat Breed</th>
+      <th>Cost</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+      <td>Siamese</td>
+      <td>$100</td>
+    </tr>
+    <tr>
+      <td>Persian</td>
+      <td>$101</td>
+    </tr>
+    </tbody>
+    <tfoot>
+    <tr>
+      <td>Tabby</td>
+      <td>$51</td>
+    </tr>
+    </tfoot>
+  </table>
+</body>
+</html>
