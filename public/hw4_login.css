@@ -1,0 +1,22 @@
+h1{
+	text-align: center;
+	font-size: 48pt;
+}
+
+form[name=login]{
+	font-size: 20pt;
+	margin: 0 auto;
+	width: 150px;	
+}
+
+form[name=forgot]{
+	font-size: 14pt;
+	margin: 0 auto;
+	width: 150px;
+}
+
+form[name=register]{
+	font-size: 14pt;
+	margin: 0 auto;
+	width: 150px;
+}
