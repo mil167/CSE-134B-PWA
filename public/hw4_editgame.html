@@ -43,22 +43,23 @@ Load time: 359ms to paint
 <script src="data-roster.js"></script>
 
 
-	<h1 id=match></h1>
-	<h2 id=score></h2>
-	<h3 id=highlightsTitle></h3>
-	<ol id="highlights">
-	</ol>
-	<br>
-	<h3 id="playersTitle"></h3>
-	<table id="playerTable">
-		<tbody id="players">
-		</tbody>
-	</table>
-	<br>
-	<div id="vods">
-		<p><a id="vod">VOD</a></p>
-		<p><a id="hlvod">Highlights VOD</a></p>
-	</div>
+  <form id="baseForm" name="baseForm">
+    <p>Enemy Team: <input type="text" name="enemyTeam"></p>
+    <p>Date: <input type="text" name="date"></p>
+    <p>Time: <input type="text" name="time"></p>
+    <p>Practice: <input type="checkbox" name="practice"></p>
+    <p>Finished: <input type="checkbox" name="finished"></p>
+    <p>Our score: <input type="number" name="ourScore"></p>
+		<p>Their score: <input type="number" name="theirScore"></p>
+		<p>Vod link: <input type="url" name="vod"></p>
+		<p>Highlight vod link: <input type="url" name="hlvod"></p>
+    <h3>Highlights</h3>
+    <div id="highlightsDiv">
+      <table id="highlightsTable">
+      </table>
+    </div>
+  </form>
+
 	<footer>
 		<hr>
 		<ul>
@@ -69,62 +70,34 @@ Load time: 359ms to paint
 	</footer>
 
   <script>
-    var gamestatsRender = function(){
+    var gameRender = function(){
       let pageMatch = getSchedule()[urlParams["matchID"]];
-			let pageTeam = getTeam();
-      if(pageMatch.finished){
-        document.querySelector("#match").innerHTML = "VS " + pageMatch.enemyTeam + " " + pageMatch.date;
-        document.querySelector("#score").innerHTML = "" + pageTeam.teamname + " " + pageMatch.ourScore + " - " + pageMatch.enemyTeam + " " + pageMatch.enemyScore;
-        document.querySelector("#score").className = pageMatch.won ? "won" : "lost";
-        document.querySelector("#highlightsTitle").innerHTML = "Highlights";
-        document.querySelector("#playersTitle").innerHTML = "Players";
-        let pageHighlights = document.querySelector("#highlights");
-        highlights.innerHTML = "";
-        for(highlight in pageMatch.highlights){
-          let hightlightLi = document.createElement('li');
-          hightlightLi.innerHTML = "<p><strong>" + pageMatch.highlights[highlight].time + "':</strong>&emsp;" + pageMatch.highlights[highlight].desc + "</p>";
-          pageHighlights.appendChild(hightlightLi);
-        }
-        let pagePlayers = document.querySelector("#players");
-        pagePlayers.innerHTML = "";
+      let pageTeam = getTeam();
+      document.baseForm.enemyTeam.value = pageMatch.enemyTeam;
+      document.baseForm.date.value = pageMatch.date;
+      document.baseForm.time.value = pageMatch.time;
+      document.baseForm.practice.value = pageMatch.practice;
+      document.baseForm.finished.value = pageMatch.finished;
+      document.baseForm.ourScore.value = pageMatch.ourScore;
+      document.baseForm.theirScore.value = pageMatch.enemyScore;
+      document.baseForm.vod.value = pageMatch.vod;
+      document.baseForm.hlvod.value = pageMatch.hlvod;
 
-        let headerrow = document.createElement('tr');
-        let teamheader = document.createElement('th');
-        teamheader.innerHTML = "<p>" + pageTeam.teamname + "</p>";
-        headerrow.appendChild(teamheader);
-        let teamheader2 = document.createElement('th');
-        teamheader2.innerHTML = "<p>" + pageMatch.enemyTeam + "</p>";
-        headerrow.appendChild(teamheader2);
-        pagePlayers.appendChild(headerrow);
+      for(highlightNum in pageMatch.highlights){
+				let highlight = pageMatch.highlights[highlightNum];
+				let timeIn = document.createElement('input');
+				timeIn.type="number";
+				timeIn.value=highlight.time;
+				timeIn.name="highlightTime " + highlightNum;
 
-        //let enemyPageTeam = getTeamByName(pageMatch.enemyTeam);
-        for(player in pageTeam.roster){
-          let playerTD = document.createElement('td');
-          playerTD.innerHTML = "<p>" + pageTeam.players[player].name + "</p>";
-          let playerRow = document.createElement('tr');
-          playerRow.appendChild(playerTD);
-          let enemyPlayerTD = document.createElement('td');
-          //if(enemyPageTeam && enemyPageTeam.players && enemyPageTeam.players[player]){
-            //enemyPlayerTD.innerHTML = "<p>" + enemyPageTeam.players[player].name + "</p>";
-          //}
-          playerRow.appendChild(enemyPlayerTD);
-          pagePlayers.appendChild(playerRow);
-        }
-        if(pageMatch.vod != ""){
-          document.querySelector("#vod").href = pageMatch.vod;
-        }
-        if(pageMatch.hlvod != ""){
-          document.querySelector("#hlvod").href = pageMatch.hlvod;
-        }
-      }
-      else if(pageMatch.practice){
-        document.querySelector("#match").innerHTML = "Practice " + " " + pageMatch.date;
-      }
-      else{
+				let descIn = document.createElement('input');
+				descIn.type="text";
+				descIn.value=highlight.desc;
+				descIn.name="highlightDesc " + highlightNum;
 
-      }
+			}
     }
-    gamestatsRender();
+    gameRender();
   </script>
 </body>
 </html>

@@ -96,8 +96,8 @@ var getSchedule = function(){
 };
 var defaultGame = {
   "enemyTeam": "Enemy",
-  "date": "date",
-  "time": "time",
+  "date": "date (month/day/year)",
+  "time": "time(h:mmAM/PM)",
   "finished": false,
   "ourScore": 0,
   "enemyScore": 0,
