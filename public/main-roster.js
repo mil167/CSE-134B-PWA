@@ -1,4 +1,4 @@
-const ConstTeam = { 
+const ConstTeam = {
         currentTeam : undefined,
 
         util : {
@@ -12,7 +12,7 @@ const ConstTeam = {
 
 
 /**
-    * class Team defines the soccer team.  
+    * class Team defines the soccer team.
     * It can generate all methods with CRUD of players and matches,
     * mostly by calling methods in class Roster
     */
@@ -40,7 +40,7 @@ class Team {
 }
 
 /**
-    * class Roster defines an array of players.  
+    * class Roster defines an array of players.
     */
 class Roster{
 	// roster is an array of player! so this.roster[i] represents a player
@@ -124,18 +124,18 @@ class Roster{
 
 		view.innerHTML = "";
 		view.appendChild(clonedTemplate);
-	
+
 		// if the player already exsist, display its info in the input field
 		if (playerId) {
                 let player = ConstTeam.currentTeam.roster.findPlayer(playerId);
-               
+
                 document.querySelector('#playerName').value = player.name;
                 document.querySelector('#playerPosition').value = player.position;
                 document.querySelector('#playerNumber').value = player.number;
                 document.querySelector('#addPlayerBtn').setAttribute('data-action','edit');
                 document.querySelector('#addPlayerBtn').setAttribute('data-playerid',playerId);
-        }// data-action data-playerid ??		
-		
+        }// data-action data-playerid ??
+
 
 		document.querySelector('#addPlayerBtn').addEventListener('click', function() {
 				let name, position, number, playerId;
@@ -152,10 +152,10 @@ class Roster{
 	            }
 	            // according to different playerId, there could be two cases:
 	            //	 the player already exists => editPlayer
-	            //	 the player is new => addPlsyer	              
+	            //	 the player is new => addPlsyer
 	            ConstTeam.currentTeam.renderRoster();
 	    }, false);
-	 
+
 	    document.querySelector('#cancelPlayerBtn').addEventListener('click', function () {
 	        ConstTeam.currentTeam.renderRoster();
 	    }, false);
@@ -165,7 +165,7 @@ class Roster{
 
 
 /**
-    * Class Player defines one single player on the soccer team.  
+    * Class Player defines one single player on the soccer team.
     * for each player, it can be edit, delete or show more infornmation about the player.
     */
 class Player {
@@ -207,16 +207,16 @@ class Player {
 		if(!this.archived){
 			MARKUP =
 			`<li class="player"><strong>Name: ${this.name}</strong> <br>
-			Title: ${this.position} <br> 
+			Title: ${this.position} <br>
 			Jersey #: ${this.number} <br>
-                 
+
              <div class="recordControls">
-                [ <span class="editBtn" onclick="ConstTeam.currentTeam.roster.renderAddForm(this.id)" id="${this.playerId}"> Edit </span> 
-                ] &nbsp;&nbsp; 
-          		[<span class="editBtn" onclick="ConstTeam.currentTeam.removePlayer(this.id); ConstTeam.currentTeam.renderRoster()" id="${this.playerId}"> Delete </span> 
-                ] &nbsp;&nbsp; 
+                [ <span class="editBtn" onclick="ConstTeam.currentTeam.roster.renderAddForm(this.id)" id="${this.playerId}"> Edit </span>
+                ] &nbsp;&nbsp;
+          		[<span class="editBtn" onclick="ConstTeam.currentTeam.removePlayer(this.id); ConstTeam.currentTeam.renderRoster()" id="${this.playerId}"> Delete </span>
+                ] &nbsp;&nbsp;
                 [ <span class="infoBtn" onclick="ConstTeam.currentTeam.roster.findPlayer(this.id).showInfo(this.id)" id="${this.playerId}"> More Info! </span>
-            	]	
+            	]
             </div>
             </li>`;
 
@@ -230,7 +230,7 @@ class Player {
 
 	showInfo(playerId){
 		let template = document.querySelector('#playerInfoTemplate');
-		
+
         let MARKUP = '';
         if (playerId) {
             MARKUP =
@@ -272,11 +272,11 @@ class Player {
      * and other events
      */
      class Schedule {
-      
+
       /**
        *  Define the schedule.  Just an array will be ordered by add
        *  but generally shown in date or type order
-       */  
+       */
       constructor ()  {
         this.schedule = [];
       }
@@ -284,11 +284,11 @@ class Player {
       render() {
         let template = document.querySelector('#schedule');
 
-        let clonedTemplate = document.importNode(template.content, true);        
-        
+        let clonedTemplate = document.importNode(template.content, true);
+
         let view = document.querySelector('#view');
         view.innerHTML = "";
-        view.appendChild(clonedTemplate); 
+        view.appendChild(clonedTemplate);
       }
 
     } /* Schedule */
@@ -307,14 +307,14 @@ class Player {
 
           let template = document.querySelector('#stats');
 
-          let clonedTemplate = document.importNode(template.content, true);        
-        
+          let clonedTemplate = document.importNode(template.content, true);
+
           let view = document.querySelector('#view');
           view.innerHTML = "";
-          view.appendChild(clonedTemplate); 
+          view.appendChild(clonedTemplate);
         }
     } /* Stats */
-   
+
 
 
     window.addEventListener('DOMContentLoaded', function () {
@@ -327,7 +327,7 @@ class Player {
 
         // bind the nav handlers
         document.querySelector('#rosterNav').addEventListener('click', function () { ConstTeam.currentTeam.renderRoster(); }, false);
-        document.querySelector('#scheduleNav').addEventListener('click', function ()  { ConstTeam.currentTeam.renderSchedule(); }, false);
+        document.querySelector('#scheduleNav').addEventListener('click', function ()  { window.location.assign("hw4_schedule.html") }, false);
         document.querySelector('#statsNav').addEventListener('click', function () { ConstTeam.currentTeam.renderStats(); }, false);
     }, false);
 

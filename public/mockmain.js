@@ -68,7 +68,7 @@ var createGame = function(){
   });
 };
 var deleteGame = function(id){
-  store.schedule.pop(id);
+  store.schedule.splice(id, 1);
 };
 var editGame = function(id, key, value){
   store.schedule[id].key = value;
@@ -80,7 +80,7 @@ var clearHighlights = function(id){
   store.schedule[id].highlights = [];
 };
 var deleteHighlight = function(id, highlightNum){
-  store.schedule[id].highlights.pop(highlightNum);
+  store.schedule[id].highlights.splice(highlightNum, 1);
 };
 var addOrEditHighlight = function(id, description){
   store.schedule[id].highlights = description;
@@ -89,6 +89,3 @@ var addOrEditHighlight = function(id, description){
 var getTeam = function(){
   return store.team;
 };
-var getTeamByName = function(name){
-  return {};
-}
