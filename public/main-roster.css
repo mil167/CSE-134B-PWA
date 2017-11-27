@@ -1,0 +1,62 @@
+/* main-roster.css */
+
+ul li {list-style-type: none;
+       margin-bottom: .5em;}
+
+.player {width: 50vw;}
+.player:hover {outline : 1px dashed black;}
+.player:hover div.recordControls {visibility: visible }
+
+.recordControls {visibility: hidden; position: relative; top: 0px; right: 0px}
+
+.editBtn {cursor: pointer; color: blue;}
+
+.infoBtn {
+	cursor: context-menu; 
+	color: red;
+	font-family: 'Helvetica';
+}
+
+.legal {
+	font-size: xx-small;
+	font-family: 'Apple Chancery';
+}
+
+#addBtn{
+	background-color: yellow;
+}
+
+.playerInfo li:before{
+	content: '✓';
+    padding-right: 5px;
+}
+
+.player{
+	font-size: 15px;
+	font-family: 'Times New Roman';
+}
+
+.playerBasicInfo h2{
+	text-decoration: underline;
+	color: green;
+	font-family: 'Arial';
+	font-size:16px;
+
+}
+
+.playerMatchInfo h2{
+	text-decoration: underline;
+	color: green;
+	font-family: 'Arial';
+	font-size:16px;
+}
+
+.playerBasicInfo {
+	font-family: 'Arial';
+	font-size:13px;
+}
+
+ .playerMatchInfo{
+	font-family: 'Arial';
+	font-size:13px;
+}
