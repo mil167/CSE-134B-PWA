@@ -30,7 +30,7 @@
 
 .matchLog li > form{
 	float: right;
-	margin: auto;
+	margin: auto 2% auto 0;
 }
 
 .matchLog li > p{
@@ -46,6 +46,12 @@
 	background-color: lightsalmon;
 }
 
+#newmatch{
+	display: block;
+	font-size: 2em;
+	float: right;
+	padding: 2%;
+}
 
 #previous a{
   float: right;
@@ -72,6 +78,10 @@ footer li{
 
 footer ul{
 	-webkit-padding-start:0;
+}
+
+footer a{
+	font-size: 2em;
 }
 
 a:hover {

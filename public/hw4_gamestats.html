@@ -8,7 +8,7 @@ Load time: 359ms to paint
 <html>
 <head>
 	<title>Game Stats</title>
-	<link rel="stylesheet" href="gamestats.css">
+	<link rel="stylesheet" href="hw4_gamestats.css">
 </head>
 <body>
 	<p>
@@ -40,63 +40,91 @@ Load time: 359ms to paint
 	       urlParams[decode(match[1])] = decode(match[2]);
 	})();
 </script>
+<script src="mockmain.js"></script>
 
 
-	<h1 id=match>VS Kitty High 10/1/2017</h1>
-	<h2 id=score class="won">Final Score: Kitty 1 - Tomcat 2</h2>
-	<h3 id=highlightsTitle>Highlights</h3>
+	<h1 id=match></h1>
+	<h2 id=score></h2>
+	<h3 id=highlightsTitle></h3>
 	<ol id="highlights">
-		<li><p><strong>0':</strong>&emsp;Match begins</p></li>
-		<li><p><strong>4':</strong>&emsp;Alex S. from Kitty High scores</p></li>
-		<li><p><strong>16':</strong>&emsp;John W. from Tomcat High gets a yellowcard</p></li>
-		<li><p><strong>time:</strong>&emsp;event</p></li>
 	</ol>
 	<br>
-	<h3 id="playersTitle">Players</h3>
-	<table id="players">
-		<tbody>
-			<tr>
-				<th><p>Kitty High</p></th>
-				<th><p>Tomcat High</p></th>
-			</tr>
-			<tr>
-				<td><p>Alex S.</p></td>
-				<td><p>Tony R.</p></td>
-			</tr>
-			<tr>
-				<td><p>Tommy T.</p></td>
-				<td><p>Rocco B.</p></td>
-			</tr>
-			<tr>
-				<td><p>Derrick A.</p></td>
-				<td><p>Garrett H.</p></td>
-			</tr>
-			<tr>
-				<td><p>Frank G.</p></td>
-				<td><p>John W.</p></td>
-			</tr>
-			<tr>
-				<td><p>Keenan M.</p></td>
-				<td><p>Sean E.</p></td>
-			</tr>
-			<tr>
-				<td><p>Player 1</p></td>
-				<td><p>Player 2</p></td>
-			</tr>
+	<h3 id="playersTitle"></h3>
+	<table id="playerTable">
+		<tbody id="players">
 		</tbody>
 	</table>
 	<br>
 	<div id="vods">
-		<p><a>VOD</a></p>
-		<p><a>Highlights VOD</a></p>
+		<p><a id="vod">VOD</a></p>
+		<p><a id="hlvod">Highlights VOD</a></p>
 	</div>
 	<footer>
 		<hr>
 		<ul>
 		 <li><a href="home.html">Home</a></li>
 		 <li><a href="roster1.html">Roster</a></li>
-		 <li><a href="schedule.html">Schedule</a></li>
+		 <li><a href="hw4_schedule.html">Schedule</a></li>
 		</ul>
 	</footer>
+
+  <script>
+    var gamestatsRender = function(){
+      let pageMatch = getSchedule()[urlParams["matchID"]];
+      if(pageMatch.finished){
+        document.querySelector("#match").innerHTML = "VS " + pageMatch.enemyTeam + " " + pageMatch.date;
+        document.querySelector("#score").innerHTML = "" + getTeam().name + " " + pageMatch.ourScore + " - " + pageMatch.enemyTeam + " " + pageMatch.enemyScore;
+        document.querySelector("#score").className = pageMatch.won ? "won" : "lost";
+        document.querySelector("#highlightsTitle").innerHTML = "Highlights";
+        document.querySelector("#playersTitle").innerHTML = "Players";
+        let pageHighlights = document.querySelector("#highlights");
+        highlights.innerHTML = "";
+        for(highlight in pageMatch.highlights){
+          let hightlightLi = document.createElement('li');
+          hightlightLi.innerHTML = "<p><strong>" + pageMatch.highlights[highlight].time + "':</strong>&emsp;" + pageMatch.highlights[highlight].desc + "</p>";
+          pageHighlights.appendChild(hightlightLi);
+        }
+        let pagePlayers = document.querySelector("#players");
+        pagePlayers.innerHTML = "";
+
+        let headerrow = document.createElement('tr');
+        let teamheader = document.createElement('th');
+        teamheader.innerHTML = "<p>" + getTeam().name + "</p>";
+        headerrow.appendChild(teamheader);
+        let teamheader2 = document.createElement('th');
+        teamheader2.innerHTML = "<p>" + pageMatch.enemyTeam + "</p>";
+        headerrow.appendChild(teamheader2);
+        pagePlayers.appendChild(headerrow);
+
+        let pageTeam = getTeam();
+        let enemyPageTeam = getTeamByName(pageMatch.enemyTeam);
+        for(player in pageTeam.players){
+          let playerTD = document.createElement('td');
+          playerTD.innerHTML = "<p>" + pageTeam.players[player].name + "</p>";
+          let playerRow = document.createElement('tr');
+          playerRow.appendChild(playerTD);
+          let enemyPlayerTD = document.createElement('td');
+          if(enemyPageTeam && enemyPageTeam.players && enemyPageTeam.players[player]){
+            enemyPlayerTD.innerHTML = "<p>" + enemyPageTeam.players[player].name + "</p>";
+          }
+          playerRow.appendChild(enemyPlayerTD);
+          pagePlayers.appendChild(playerRow);
+        }
+        if(pageMatch.vod != ""){
+          document.querySelector("#vod").href = pageMatch.vod;
+        }
+        if(pageMatch.hlvod != ""){
+          document.querySelector("#hlvod").href = pageMatch.hlvod;
+        }
+      }
+      else if(pageMatch.practice){
+        document.querySelector("#match").innerHTML = "Practice " + " " + pageMatch.date;
+      }
+      else{
+
+      }
+    }
+    gamestatsRender();
+  </script>
 </body>
 </html>

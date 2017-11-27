@@ -27,82 +27,65 @@ Load time: 359ms to paint
 		<h1>Schedule</h1>
   	<ol id="view">
 		</ol>
+		<div style="padding:10% 0">
+		<button onclick="createAndUpdate()" id="newmatch">New Match</button>
+		</div>
 	</div>
 	<footer>
 		<hr>
 		<ul>
 		 <li><a href="home.html">Home</a></li>
 		 <li><a href="roster1.html">Roster</a></li>
-		 <li><a href="schedule.html">Schedule</a></li>
+		 <li><a href="hw4_schedule.html">Schedule</a></li>
 		</ul>
 	</footer>
 
 
-<script>
-	var store = {
-		"team":{
-
-		},
-		"schedule":[
-			{
-				"enemyTeam": "Jaguar High",
-				"date": "10/11/2017",
-				"time": "2:00PM",
-				"finished": false,
-				"ourScore": 0,
-				"enemyScore": 0,
-				"won": false
-			},
-			{
-				"enemyTeam": "Jaguar High",
-				"date": "10/1/2017",
-				"time": "3:00PM",
-				"finished": true,
-				"ourScore": 4,
-				"enemyScore": 3,
-				"won": true
-			}
-
-		]
-	};
-	var getSchedule = function(){
-		return store.schedule;
-	};
-	var insertGameIntoSchedule = function(gameToInsert){
-		store.schedule.push(gameToInsert);
-	};
-	</script>
+<script src="mockmain.js"></script>
 
 	<script>
-		let view = document.querySelector('#view');
-		for(idnumber in getSchedule()){
-			let scheduledGame = getSchedule()[idnumber];
-			let insideParagraph = document.createElement('p');
-			insideParagraph.innerHTML = "VS " + scheduledGame.enemyTeam + "&nbsp;" + scheduledGame.date + "&nbsp;" + scheduledGame.time;
-			let pageForm = document.createElement('form');
-			pageForm.action = "hw4_gamestats.html";
-			pageForm.method = "GET";
-			pageForm.innerHTML = "<input type='hidden' name='matchID' value= '" + idnumber + "'>";
-			let linkToGamePage = document.createElement('input');
-			linkToGamePage.type = "submit";
-			linkToGamePage.value = "Overview";
-			//linkToGamePage.href = "gamestats/" + scheduledGame.id + ".html";
-			//linkToGamePage.innerHTML = "Overview";
-			pageForm.appendChild(linkToGamePage);
-			//insideParagraph.appendChild(pageForm);
-			let gameElement = document.createElement('li');
-			gameElement.appendChild(insideParagraph);
-			gameElement.appendChild(pageForm);
-			if(scheduledGame.finished){
-				if(scheduledGame.won){
-					gameElement.className = "matchWon";
+		var scheduleRender = function(){
+			let view = document.querySelector('#view');
+			view.innerHTML = "";
+			for(idnumber in getSchedule()){
+				let scheduledGame = getSchedule()[idnumber];
+				let insideParagraph = document.createElement('p');
+				if(scheduledGame.practice){
+						insideParagraph.innerHTML = "Practice " + scheduledGame.date + " " + scheduledGame.time;
 				}
 				else{
-					gameElement.className = "matchLost";
+					insideParagraph.innerHTML = "VS " + scheduledGame.enemyTeam + "&nbsp;" + scheduledGame.date + "&nbsp;" + scheduledGame.time;
 				}
+				let pageForm = document.createElement('form');
+				pageForm.action = "hw4_gamestats.html";
+				pageForm.method = "GET";
+				pageForm.innerHTML = "<input type='hidden' name='matchID' value= '" + idnumber + "'>";
+				let linkToGamePage = document.createElement('input');
+				linkToGamePage.type = "submit";
+				linkToGamePage.value = "Overview";
+				//linkToGamePage.href = "gamestats/" + scheduledGame.id + ".html";
+				//linkToGamePage.innerHTML = "Overview";
+				pageForm.appendChild(linkToGamePage);
+				//insideParagraph.appendChild(pageForm);
+				let gameElement = document.createElement('li');
+				gameElement.appendChild(insideParagraph);
+				gameElement.appendChild(pageForm);
+				if(scheduledGame.finished){
+					if(scheduledGame.won){
+						gameElement.className = "matchWon";
+					}
+					else{
+						gameElement.className = "matchLost";
+					}
+				}
+				view.appendChild(gameElement);
 			}
-			view.appendChild(gameElement);
-		}
+		};
+		scheduleRender();
+		var createAndUpdate = function(){
+			createGame();
+			scheduleRender();
+		};
 	</script>
 
 </body>
