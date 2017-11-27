@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Roster Page</title>
+    <link rel="stylesheet" href="main-roster.css">
+</head>
+<body>
+
+
+
+<main id="view"></main>
+<!-- The <main> tag specifies the main content of a document.
+The content inside the <main> element should be unique to the document. It should not contain any content that is repeated across documents such as sidebars, navigation links, copyright information, site logos, and search forms. -->
+
+
+<footer>
+	<nav>
+		<button id="rosterNav">Roster</button>
+		<button id="scheduleNav">Schedule</button>
+		<button id="statsNav">Stats</button>
+	</nav>
+	<div class="legal">&copy; CSE 134B 2017Fall </div>
+</footer>
+
+
+
+<template id="roster">
+	<h1>Team Roster</h1>
+	<div id="playerList"></div>        <!-- This is where the markup in render() goes into -->
+	<input type="button" value="Add Player Here!" id="addBtn">
+</template>
+
+<!-- this part will be selected in js: Roster->render()
+ -->
+
+<!-- The <input> tag specifies an input field where the user can enter data.
+<input> elements are used within a <form> element to declare input controls that allow users to input data.
+An input field can vary in many ways, depending on the type attribute.
+ -->
+
+<!-- Creating the form to add player -->
+<template id="playerFormTemplate">
+	<form id="playerForm">
+		<fieldset>
+			<legend>Player</legend>
+			<div>
+				<label for="playerName">Name</label>
+				<input type="text" id="playerName" placeholder="Player Name">
+			</div>
+
+			<div>
+				<label for="playerPosition">Position</label>
+				<input type="text" id="playerPosition" placeholder="Player Position">
+			</div>
+			
+			<div>
+				<label for="playerNumber">Number</label>
+				<input type="text" id="playerNumber" placeholder="Player Number">
+			</div>
+
+			<div>
+				<input type="button" id="addPlayerBtn" value="Add">
+				<input type="button" id="canclePlayerBtn" value="Cancle">
+			</div>
+		</fieldset>
+	</from>
+</template>
+
+
+
+<!-- The <fieldset> tag is used to group related elements in a form.
+It draws a box around the related elements.
+The <legend> tag defines a caption for the <fieldset> element.
+ -->
+<!-- The <label> tag defines a label for an <input> element.
+The for attribute of the <label> tag should be equal to the id attribute of the related element to bind them together.
+A label can be bound to an element either by using the "for" attribute, or by placing the element inside the <label> element.
+ -->
+
+
+<template id="playerInfoTemplate">
+	<h1>Player Information</h1>
+	<div id="playerInfo"></div>
+	<!-- <input type="button" value="Add" id="addBtn"> -->
+</template>
+
+
+<script src="data-roster.js"></script>
+<script src="main-roster.js"></script>
+
+
+</body>
+</html>
