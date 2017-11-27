@@ -24,6 +24,23 @@ Load time: 359ms to paint
        alt="Valid XHTML 1.0!" height="31" width="88" /></a>
 </p>
 
+<script>
+	//Taken from https://stackoverflow.com/questions/901115/how-can-i-get-query-string-values-in-javascript
+	//Used instead of php to do content generation solely in js
+	var urlParams;
+	(window.onpopstate = function () {
+	    var match,
+	        pl     = /\+/g,  // Regex for replacing addition symbol with a space
+	        search = /([^&=]+)=?([^&]*)/g,
+	        decode = function (s) { return decodeURIComponent(s.replace(pl, " ")); },
+	        query  = window.location.search.substring(1);
+
+	    urlParams = {};
+	    while (match = search.exec(query))
+	       urlParams[decode(match[1])] = decode(match[2]);
+	})();
+</script>
+
 
 	<h1 id=match>VS Kitty High 10/1/2017</h1>
 	<h2 id=score class="won">Final Score: Kitty 1 - Tomcat 2</h2>
