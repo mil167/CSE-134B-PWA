@@ -35,28 +35,30 @@
 		</ul>
 	</footer>
 
-	<script src="mockmain.js"></script>
+	<script src="data-roster.js"></script>
 	<script>
 			var games = getSchedule();
 			var win = 0;
 			var lose = 0;
 			for(var i = 0; i < games.length; i++){
-				if(games[i].won == true) {
-					win++;
-				}
-				else {
-					lose++;
+				if(games[i].practice == false){
+					if(games[i].won == true) {
+						win++;
+					}
+					else {
+						lose++;
+					}
 				}
 			}
-			
-			document.getElementById("winloss").innerHTML = win.toString() + 
+
+			document.getElementById("winloss").innerHTML = win.toString() +
 
 "-" + lose.toString();
 			var gamesleft = 10 - games.length;
-			document.getElementById("gameleft").innerHTML = 
+			document.getElementById("gameleft").innerHTML =
 
 gamesleft.toString();
-		
+
 	</script>
 </body>
 </html>
