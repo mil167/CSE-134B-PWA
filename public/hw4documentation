@@ -16,6 +16,12 @@ the true user experience of using a web app.
 There are obivious trade-offs: pictures make it easier to recognize and remember the players, but they will very likely slow down the 
 loading speed in light of their size. 
 
+3. Since we're more focused on building a mobile web page, here we kind of break the "1 page 1 url" rule. Users can roaming through different pages 
+directly. The bad part is that if users hit the back button, they can't get the desired effect. But since normaly mobile web users don't really care
+about which url (page) they are in, and since we always keep navigation bars at the bottom of every page, users should find their way back and forth
+smoothly.
+
+
 
 
 Schedule part:
