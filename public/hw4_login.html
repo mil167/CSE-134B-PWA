@@ -26,14 +26,14 @@
 		Password:<br>
 		<input type="password" name="pw">
 		<br><br>
-		<input type="submit" onclick="authenticate(this.form)" value="Log in">
+		<input type="button" onclick="authenticate(this.form)" value="Log in">
 	</form>
 	<script type="text/javascript">
 		function authenticate(form) {
 			const user = form.username.value;
 			const pass = form.pw.value;
 			if(user == "cse134b" && pass == "fa17") {
-				window.open("hw4_home.html");
+				window.location.assign("hw4_home.html");
 
 			}
 			else {
@@ -45,14 +45,14 @@
 
 	<br><br><br>
 
-	<form action="forgot.html" name="forgot">
+	<form action="hw4_forgot.html" name="forgot">
 		Forgot your username/password?<br>
 		<input type="submit" value="Forgot password?">
 	</form>
 
 	<br><br>
 
-	<form action="register.html" name="register">
+	<form action="hw4_register.html" name="register">
 		New user? Sign up now!<br>
 		<input type="submit" value="Register">
 	</form>

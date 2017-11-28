@@ -122,8 +122,8 @@ Load time: 359ms to paint
       document.baseForm.enemyTeam.value = pageMatch.enemyTeam;
       document.baseForm.date.value = pageMatch.date;
       document.baseForm.time.value = pageMatch.time;
-      document.baseForm.practice.value = pageMatch.practice;
-      document.baseForm.finished.value = pageMatch.finished;
+      document.baseForm.practice.checked = pageMatch.practice;
+      document.baseForm.finished.checked = pageMatch.finished;
       document.baseForm.ourScore.value = pageMatch.ourScore;
       document.baseForm.enemyScore.value = pageMatch.enemyScore;
       document.baseForm.vod.value = pageMatch.vod;
@@ -163,8 +163,8 @@ Load time: 359ms to paint
 			gameToSend.enemyTeam = document.baseForm.enemyTeam.value;
 			gameToSend.date = document.baseForm.date.value;
 			gameToSend.time = document.baseForm.time.value;
-			gameToSend.practice = document.baseForm.practice.value;
-			gameToSend.finished = document.baseForm.finished.value;
+			gameToSend.practice = document.baseForm.practice.checked;
+			gameToSend.finished = document.baseForm.finished.checked;
 			gameToSend.ourScore = document.baseForm.ourScore.value;
 			gameToSend.enemyScore = document.baseForm.enemyScore.value;
 			gameToSend.vod = document.baseForm.vod.value;

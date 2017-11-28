@@ -325,9 +325,11 @@ class Player {
             	store.roster[i].matchCount, store.roster[i].goals, store.roster[i].redCards);
         }
 
+        ConstTeam.currentTeam.renderRoster();
+
         // bind the nav handlers
         document.querySelector('#rosterNav').addEventListener('click', function () { ConstTeam.currentTeam.renderRoster(); }, false);
-        document.querySelector('#scheduleNav').addEventListener('click', function ()  { window.location.assign("hw4_schedule.html") }, false);
-        document.querySelector('#statsNav').addEventListener('click', function () { ConstTeam.currentTeam.renderStats(); }, false);
+        document.querySelector('#scheduleNav').addEventListener('click', function ()  { window.location.assign("hw4_schedule.html"); }, false);
+        document.querySelector('#statsNav').addEventListener('click', function () { window.location.assign("hw4_home.html") }, false);
     }, false);
 
