@@ -1,0 +1,24 @@
+CSE 134B 2017fall HW4
+
+
+Planning / Concerns / Explanations:
+
+
+
+Roster part:
+
+1. The biggest forseen upcoming changes would be storing the changes per user makes to the roster rather than only storing them per visit to
+the site. Now since we are not using cloud or database to store data, changes made to the roster will disappear when user close the page -
+even if the user is logged in validly. Next we would probably work on keep these changes consistent per user, so that it can best represent
+the true user experience of using a web app.
+
+2. This time for the concern of loading time and overall performance speed, we leave out the player photos part in the roster.
+There are obvious trade-offs: pictures make it easier to recognize and remember the players, but they will very likely slow down the
+loading speed in light of their size.
+
+
+
+Schedule part:
+
+1. This time for the concern of decreasing load time, we link the schedule part into a separate page. The trade-off is quite obvious:
+it fails to keep style consistence between the app. But from the performance perspective it is acceptable to us.
