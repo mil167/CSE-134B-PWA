@@ -94,22 +94,21 @@
 var getSchedule = function(){
   return store.schedule;
 };
-var defaultGame = {
-  "enemyTeam": "Enemy",
-  "date": "date (month/day/year)",
-  "time": "time(h:mmAM/PM)",
-  "finished": false,
-  "ourScore": 0,
-  "enemyScore": 0,
-  "won": false,
-  "practice": false,
-  "highlights": [
-  ],
-  "vod": "",
-  "hlvod": ""
-};
 var createGame = function(){
-  store.schedule.push(defaultGame);
+  store.schedule.push({
+    "enemyTeam": "Enemy",
+    "date": "date (month/day/year)",
+    "time": "time(h:mmAM/PM)",
+    "finished": false,
+    "ourScore": 0,
+    "enemyScore": 0,
+    "won": false,
+    "practice": false,
+    "highlights": [
+    ],
+    "vod": "",
+    "hlvod": ""
+  });
 };
 var createUpTo = function(id){
   while(!store.schedule[id]){
@@ -120,7 +119,11 @@ var deleteGame = function(id){
   store.schedule.splice(id, 1);
 };
 var setGame = function(id, newGame){
-  store.schedule[id] = newGame;
+  store.schedule[id] = Object.assign({}, newGame);
+  store.schedule[id].highlights = [];
+  for(var num = 0; num < newGame.highlights.length; ++num){
+    store.schedule[id].highlights.push(newGame.highlights[num]);
+  }
 };
 var orderHighlightsByTime = function(id){
 

@@ -8,7 +8,7 @@ Load time: 359ms to paint
 <html>
 <head>
 	<title>Game Stats</title>
-	<link rel="stylesheet" href="hw4_gamestats.css">
+	<link rel="stylesheet" href="hw4_editgame.css">
 </head>
 <body>
 	<p>
@@ -50,7 +50,7 @@ Load time: 359ms to paint
     <p>Practice: <input type="checkbox" name="practice"></p>
     <p>Finished: <input type="checkbox" name="finished"></p>
     <p>Our score: <input type="number" name="ourScore"></p>
-		<p>Their score: <input type="number" name="theirScore"></p>
+		<p>Their score: <input type="number" name="enemyScore"></p>
 		<p>Vod link: <input type="url" name="vod"></p>
 		<p>Highlight vod link: <input type="url" name="hlvod"></p>
     <h3>Highlights</h3>
@@ -58,14 +58,60 @@ Load time: 359ms to paint
       <table id="highlightsTable">
       </table>
     </div>
+		<br>
+		<input type="button" onclick="newHighlight()" name="newHighlightButton" value="Add Highlight" class="optionsButton">
+		<br>
+		<br>
+		<input type="button" onclick="gameUpdate()" name="saveButton" value="Save Changes" class="optionsButton">
+
+		<script>
+		var newHighlight = function(){
+			let highlightTable = document.querySelector("#highlightsTable");
+			let timeInD = document.createElement('td');
+			let timeIn = document.createElement('input');
+			timeIn.type="number";
+			timeIn.value="0";
+			timeIn.name="highlightTime " + highlightTable.childElementCount;
+			timeInD.appendChild(timeIn);
+
+			let descInD = document.createElement('td');
+			let descIn = document.createElement('input');
+			descIn.type="text";
+			descIn.value="description";
+			descIn.name="highlightDesc " + highlightTable.childElementCount;
+			descInD.appendChild(descIn);
+
+			let delButtonD = document.createElement('td');
+			delButtonD.innerHTML = "<input type='button' value='remove' onclick='deleteHighlight(" + highlightTable.childElementCount + ")'>";
+
+			let highlightRow = document.createElement('tr');
+			highlightRow.appendChild(timeInD);
+			highlightRow.appendChild(descInD);
+			highlightRow.appendChild(delButtonD);
+
+			highlightTable.appendChild(highlightRow);
+		};
+		</script>
+
+		<script>
+		var deleteHighlight = function(highlightNum){
+			let highlightTable = document.querySelector("#highlightsTable");
+			highlightTable.removeChild(highlightTable.children[highlightNum]);
+			for(let coutner = 0; coutner < highlightTable.childElementCount; ++coutner){
+				highlightTable.children[coutner].children[0].name = "highlightTime " + coutner;
+				highlightTable.children[coutner].children[1].name = "highlightDesc " + coutner;
+				highlightTable.children[coutner].children[2].innerHTML = "<input type='button' value='remove' onclick='deleteHighlight(" + coutner + ")'>";
+			}
+		};
+		</script>
   </form>
 
 	<footer>
 		<hr>
 		<ul>
-		 <li><a href="home.html">Home</a></li>
-		 <li><a href="roster1.html">Roster</a></li>
-		 <li><a href="hw4_schedule.html">Schedule</a></li>
+			<li><a href="hw4_home.html">Home</a></li>
+ 		 <li><a href="main-roster.html">Roster</a></li>
+ 		 <li><a href="hw4_schedule.html">Schedule</a></li>
 		</ul>
 	</footer>
 
@@ -79,25 +125,60 @@ Load time: 359ms to paint
       document.baseForm.practice.value = pageMatch.practice;
       document.baseForm.finished.value = pageMatch.finished;
       document.baseForm.ourScore.value = pageMatch.ourScore;
-      document.baseForm.theirScore.value = pageMatch.enemyScore;
+      document.baseForm.enemyScore.value = pageMatch.enemyScore;
       document.baseForm.vod.value = pageMatch.vod;
       document.baseForm.hlvod.value = pageMatch.hlvod;
 
+			let highlightTable = document.querySelector("#highlightsTable");
       for(highlightNum in pageMatch.highlights){
 				let highlight = pageMatch.highlights[highlightNum];
+				let timeInD = document.createElement('td');
 				let timeIn = document.createElement('input');
 				timeIn.type="number";
 				timeIn.value=highlight.time;
 				timeIn.name="highlightTime " + highlightNum;
+				timeInD.appendChild(timeIn);
 
+				let descInD = document.createElement('td');
 				let descIn = document.createElement('input');
 				descIn.type="text";
 				descIn.value=highlight.desc;
 				descIn.name="highlightDesc " + highlightNum;
+				descInD.appendChild(descIn);
 
+				let delButtonD = document.createElement('td');
+				delButtonD.innerHTML = "<input type='button' value='remove' onclick='deleteHighlight(" + highlightNum + ")'>";
+
+				let highlightRow = document.createElement('tr');
+				highlightRow.appendChild(timeInD);
+				highlightRow.appendChild(descInD);
+				highlightRow.appendChild(delButtonD);
+
+				highlightTable.appendChild(highlightRow);
 			}
     }
     gameRender();
+		var gameUpdate = function(){
+			let gameToSend = {};
+			gameToSend.enemyTeam = document.baseForm.enemyTeam.value;
+			gameToSend.date = document.baseForm.date.value;
+			gameToSend.time = document.baseForm.time.value;
+			gameToSend.practice = document.baseForm.practice.value;
+			gameToSend.finished = document.baseForm.finished.value;
+			gameToSend.ourScore = document.baseForm.ourScore.value;
+			gameToSend.enemyScore = document.baseForm.enemyScore.value;
+			gameToSend.vod = document.baseForm.vod.value;
+			gameToSend.hlvod = document.baseForm.hlvod.value;
+			gameToSend.highlights = [];
+			let highlightTable = document.querySelector("#highlightsTable");
+			for(var high_count = 0; high_count < highlightTable.childElementCount; ++high_count){
+				let highlightRow = highlightTable.children[high_count];
+				//let timeIn = highlightRow.firstElementChild.innerHTML;
+				//let descIn = highlightRow.lastElementChild.innerHTML;
+				gameToSend.highlights.push({"time": highlightRow.firstElementChild.firstElementChild.value, "desc": highlightRow.lastElementChild.firstElementChild.value});
+			}
+			setGame(urlParams["matchID"], gameToSend);
+		}
   </script>
 </body>
 </html>

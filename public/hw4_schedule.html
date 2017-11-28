@@ -34,8 +34,8 @@ Load time: 359ms to paint
 	<footer>
 		<hr>
 		<ul>
-		 <li><a href="home.html">Home</a></li>
-		 <li><a href="roster1.html">Roster</a></li>
+		 <li><a href="hw4_home.html">Home</a></li>
+		 <li><a href="main-roster.html">Roster</a></li>
 		 <li><a href="hw4_schedule.html">Schedule</a></li>
 		</ul>
 	</footer>
@@ -66,10 +66,26 @@ Load time: 359ms to paint
 				//linkToGamePage.href = "gamestats/" + scheduledGame.id + ".html";
 				//linkToGamePage.innerHTML = "Overview";
 				pageForm.appendChild(linkToGamePage);
+
+				let pageEdit = document.createElement('form');
+				pageEdit.action = "hw4_editgame.html";
+				pageEdit.method = "GET";
+				pageEdit.innerHTML = "<input type='hidden' name='matchID' value= '" + idnumber + "'>";
+				let linkToEditPage = document.createElement('input');
+				linkToEditPage.type = "submit";
+				linkToEditPage.value = "Edit";
+				//linkToGamePage.href = "gamestats/" + scheduledGame.id + ".html";
+				//linkToGamePage.innerHTML = "Overview";
+				pageEdit.appendChild(linkToEditPage);
 				//insideParagraph.appendChild(pageForm);
+
+				let buttonsDiv = document.createElement('div');
+				buttonsDiv.appendChild(pageForm);
+				buttonsDiv.appendChild(pageEdit);
+
 				let gameElement = document.createElement('li');
 				gameElement.appendChild(insideParagraph);
-				gameElement.appendChild(pageForm);
+				gameElement.appendChild(buttonsDiv);
 				if(scheduledGame.finished){
 					if(scheduledGame.won){
 						gameElement.className = "matchWon";

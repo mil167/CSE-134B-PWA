@@ -28,14 +28,19 @@
 	display: flex;
 }
 
-.matchLog li > form{
+.matchLog li > div{
 	float: right;
+	display: flex;
 	margin: auto 2% auto 0;
 }
 
 .matchLog li > p{
 	float: left;
 	margin: auto;
+}
+
+.matchLog form{
+	margin: 0 0.5%;
 }
 
 .matchLog .matchWon{

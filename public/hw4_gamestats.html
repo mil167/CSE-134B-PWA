@@ -100,7 +100,7 @@ Load time: 359ms to paint
         //let enemyPageTeam = getTeamByName(pageMatch.enemyTeam);
         for(player in pageTeam.roster){
           let playerTD = document.createElement('td');
-          playerTD.innerHTML = "<p>" + pageTeam.players[player].name + "</p>";
+          playerTD.innerHTML = "<p>" + pageTeam.roster[player].name + "</p>";
           let playerRow = document.createElement('tr');
           playerRow.appendChild(playerTD);
           let enemyPlayerTD = document.createElement('td');

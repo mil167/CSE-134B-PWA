@@ -1,0 +1,116 @@
+*{
+  text-align: center;
+}
+
+p, a{
+	font-size:1.8em;
+}
+
+input{
+  font-size:1em;
+  text-align: left;
+}
+
+.optionsButton{
+  font-size:2em;
+}
+
+body{
+  padding-top: 6em;
+}
+
+h1{
+  top:0;
+  left:0;
+  text-align: center;
+  width:100%;
+  background-color:grey;
+  position:fixed;
+  -webkit-margin-before:unset;
+  padding:0.5em 0;
+  font-size:4em;
+}
+
+h2{
+	font-size: 3em;
+}
+
+h3{
+	font-size: 2em;
+}
+
+.won{
+	background-color: lightgreen;
+}
+
+.lost{
+	background-color: lightsalmon;
+}
+
+ol{
+  list-style-type: none;
+}
+
+#highlightsTable{
+  width:100%;
+}
+
+#highlightsTable input{
+  width:98%;
+  height:100%;
+  padding: 1% 0;
+  margin: 0.5% 0;
+}
+
+tr *{
+  text-align: center;
+  background-color:white;
+  font-size: 1.2em;
+}
+
+table,tr td,tr th{
+  margin:none;
+}
+table{
+	background-color:black;
+}
+
+#vods{
+  width:100%;
+  display:inline-flex;
+}
+
+#vods > p{
+  font-weight: bolder;
+  padding:1em;
+  background-color: lightblue;
+  margin:auto;
+}
+
+footer{
+    text-align: center;
+    height: 40%;
+    width: 100%;
+    font-family: 'Apple Chancery';
+    font-size: 1.5em;
+   /* border: 1px solid blue;*/
+}
+
+footer li{
+    display: inline-block;
+    margin:auto;
+		width: 20%;
+    padding:1em;
+    border:0.1em dashed black;
+		background-color:lightblue;
+}
+
+footer ul{
+	-webkit-padding-start:0;
+}
+
+a:hover {
+    color: red;
+    background-color: transparent;
+    text-decoration: underline;
+}
