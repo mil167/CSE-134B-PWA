@@ -1,0 +1,49 @@
+h1{
+	text-align: center;
+	font-size: 36pt;
+}
+
+p{
+	text-align: center;
+	font-size: 16pt;
+}
+
+li{
+	display: inline-block;
+	padding: 15px 32px;
+
+	border-style: solid;
+
+}
+
+footer{
+    text-align: center;
+    height: 40%;
+    width: 100%;
+    font-family: 'Apple Chancery';
+    font-size: 1.5em;
+   /* border: 1px solid blue;*/
+}
+
+footer li{
+    display: inline-block;
+    margin:auto;
+		width: 20%;
+    padding:1em;
+    border:0.1em dashed black;
+		background-color:lightblue;
+}
+
+#logout{
+	background-color:#FF4444;
+}
+footer ul{
+	-webkit-padding-start:0;
+}
+
+a:hover {
+    color: red;
+    background-color: transparent;
+    text-decoration: underline;
+}
+
