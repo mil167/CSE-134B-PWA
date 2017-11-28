@@ -28,3 +28,12 @@ Schedule part:
 
 1. This time for the concern of decreasing load time, we link the scheduel part into a seperate page. The trade-off is quite obivious: 
 it fails to keep style consistence between the app. But from the performance perspective it is accepatble to us.
+
+Home Screen:
+
+1. Some of the home screen's stats were removed, such as ranking, since we did not have enough teams to create a league. In the future, there might be a way
+to create league-wide statistics. 
+
+Login/Register:
+
+1. The biggest changes would be user authentication and saving the user data in the database.
