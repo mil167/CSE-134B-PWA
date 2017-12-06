@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
 <html>
 <head>
-	<title>New user</title>
+	<title>New User Registration</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="hw4_register.css">
 </head>
@@ -11,32 +11,43 @@
 		Enter email address: <br>
 		<input type="text" name="email">
 		<br>
-		Choose a username: <br>
-		<input type="text" name="user">
-		<br>
 		Choose a password: <br>
-		<input type="password" name="pass">
+		<input type="password" name="password">
 		<br><br>
-		<input type="submit" onclick="check(this.form)" value="OK">
+		<input type="submit" onclick="regUser(this.form)" value="OK">
 		<p id="demo"></p>
 	</form>
 	
 	<br><br>
 	<p>Click <a href="hw4_login.html">here</a> to go back to the login screen.</p>
 
-	<script type="text/javascript">
-	function check(form) {
-		const ea = form.email.value;
-		const username = form.user.value;
-		const password = form.pass.value;
-		if(ea == "" || username == "" || password == "") {
-			window.alert("Please fill out all fields!");
-		}
-		else {			
-			window.open("hw4_confirm.html");
-		}
-	}
+	<script src="https://www.gstatic.com/firebasejs/4.7.0/firebase.js"></script>
+	<script>
+  	//Initialize Firebase
+ 		 var config = {
+    			apiKey: "AIzaSyASJCB6FqMc6FiroJGWAHViOdLiI1eGHYk",
+    			authDomain: "catwebsite-7bf63.firebaseapp.com",
+    			databaseURL: "https://catwebsite-7bf63.firebaseio.com",
+    			projectId: "catwebsite-7bf63",
+    			storageBucket: "catwebsite-7bf63.appspot.com",
+    			messagingSenderId: "505732270795"
+  	};
+  	firebase.initializeApp(config);
 	</script>
-
+	<script>
+		function regUser(form){
+			firebase.auth().createUserWithEmailAndPassword(form.email.value,form.password.value).catch(function(error) {
+  				var errorCode = error.code;
+  				var errorMessage = error.message;
+				if(errorCode == 'auth/invalid-email') {
+					window.alert('Email already registered!');
+				}
+				else {
+					window.alert(errorMessage);
+				}
+				console.log(error);
+			});
+		}
+	</script>	
 </body>
 </html>
