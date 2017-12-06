@@ -19,30 +19,48 @@
        alt="Valid XHTML 1.0!" height="31" width="88" /></a>
 </p>
 	<h1>TeamWatch</h1>
-	<form name="login">
-		Username:<br>
-		<input type="text" name="username">
+	<div id="login">
+		Email:<br>
+		<input type="text" name="email" id="email">
 		<br>
 		Password:<br>
-		<input type="password" name="pw">
+		<input type="password" name="pw" id="pw">
 		<br><br>
-		<input type="button" onclick="authenticate(this.form)" value="Log in">
-	</form>
-	<script type="text/javascript">
-		function authenticate(form) {
-			const user = form.username.value;
-			const pass = form.pw.value;
-			if(user == "cse134b" && pass == "fa17") {
-				window.location.assign("hw4_home.html");
-
-			}
-			else {
-				window.alert("Incorrect username/password!");
-			}
-
-		}
+		<input type="submit" onclick="loginUser()" value="Log in">
+	</div>
+	<script src="https://www.gstatic.com/firebasejs/4.7.0/firebase.js"></script>
+	<script>
+  	// Initialize Firebase
+  		var config = {
+    			apiKey: "AIzaSyASJCB6FqMc6FiroJGWAHViOdLiI1eGHYk",
+    			authDomain: "catwebsite-7bf63.firebaseapp.com",
+    			databaseURL: "https://catwebsite-7bf63.firebaseio.com",
+    			projectId: "catwebsite-7bf63",
+    			storageBucket: "catwebsite-7bf63.appspot.com",
+    			messagingSenderId: "505732270795"
+  		};
+  		firebase.initializeApp(config);
 	</script>
+<script>
+  function loginUser() {
+    var a = document.getElementById("email").value;
+    var b = document.getElementById("pw").value;
+    firebase.auth().signInWithEmailAndPassword(a,b).then(function() {
+      window.location.assign("hw4_home.html");
+    })
+    .catch(function(error) {
+      var errorCode = error.code;
+      var errorMsg = error.message;
+      if(errorCode == 'auth/wrong-password') {
+        console.log('Incorrect password');
+      } else {
+        console.log(errorMsg);
+      }
+      console.log(error);
+    });
 
+  }
+</script>
 	<br><br><br>
 
 	<form action="hw4_forgot.html" name="forgot">
