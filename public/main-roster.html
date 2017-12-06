@@ -21,7 +21,7 @@ The content inside the <main> element should be unique to the document. It shoul
 		<button id="scheduleNav">Schedule</button>
 		<button id="statsNav">Stats</button>
 	</nav>
-	
+
 	<div class="legal">&copy; CSE 134B 2017Fall </div>
 </footer>
 
@@ -55,15 +55,15 @@ An input field can vary in many ways, depending on the type attribute.
 				<label for="playerPosition">Position</label>
 				<input type="text" id="playerPosition" placeholder="Player Position">
 			</div>
-			
+
 			<div>
 				<label for="playerNumber">Number</label>
 				<input type="text" id="playerNumber" placeholder="Player Number">
 			</div>
 
 			<div>
-				<input type="button" id="addPlayerBtn" value="Add">
-				<input type="button" id="canclePlayerBtn" value="Cancle">
+				<input type="button" id="addPlayerBtn" value="Done">
+				<input type="button" id="cancelPlayerBtn" value="Cancel">
 			</div>
 		</fieldset>
 	</from>
@@ -87,7 +87,7 @@ A label can be bound to an element either by using the "for" attribute, or by pl
 	<div id="playerInfo"></div>
 </template>
 
-<!-- 
+<!--
 <template id="schedule">
     <h1>Team Schedule</h1>
 </template>
@@ -98,7 +98,8 @@ A label can be bound to an element either by using the "for" attribute, or by pl
 </template>
  -->
 
-
+<script src="https://www.gstatic.com/firebasejs/4.7.0/firebase.js"></script>
+<script src="https://www.gstatic.com/firebasejs/4.6.0/firebase-firestore.js"></script>
 <script src="data-roster.js"></script>
 <script src="main-roster.js"></script>
 

@@ -88,8 +88,56 @@
       }
 
     ]
-
 };
+
+// Initialize Firebase
+var config = {
+  apiKey: "AIzaSyASJCB6FqMc6FiroJGWAHViOdLiI1eGHYk",
+  authDomain: "catwebsite-7bf63.firebaseapp.com",
+  databaseURL: "https://catwebsite-7bf63.firebaseio.com",
+  projectId: "catwebsite-7bf63",
+  storageBucket: "catwebsite-7bf63.appspot.com",
+  messagingSenderId: "505732270795"
+};
+firebase.initializeApp(config);
+var db = firebase.firestore();
+firebase.firestore().enablePersistence()
+.then(function() {
+  db = firebase.firestore();
+   // Initialize Cloud Firestore through firebase
+})
+.catch(function(err) {
+   if (err.code == 'failed-precondition') {
+       // Multiple tabs open, persistence can only be enabled
+       // in one tab at a a time.
+       // ...
+   } else if (err.code == 'unimplemented') {
+       // The current browser does not support all of the
+       // features required to enable persistence
+       // ...
+   }
+});
+db.collection("roster").onSnapshot( snapshot => {
+  snapshot.docChanges.forEach( change => {
+    if(change.type === "added" || change.type === "modified" ){
+      setPlayerInfoByPlayerId(change.doc.data().playerId, change.doc.data());
+    }
+    else{
+      removePlayerById(change.doc.data().playerId);
+    }
+    console.log(change.doc.data());
+  });
+  if(typeof afterRosterUpdate !== 'undefined'){
+    afterRosterUpdate();
+  }
+});
+db.collection("schedule").onSnapshot( snapshot => {
+  snapshot.docChanges.forEach( change => {
+  });
+  if(typeof afterScheduleUpdate !== 'undefined'){
+    afterScheduleUpdate();
+  }
+});
 
 var getSchedule = function(){
   return store.schedule;
@@ -140,4 +188,35 @@ var addOrEditHighlight = function(id, description){
 };
 var getTeam = function(){
   return store;
+};
+var setPlayerInfoByPlayerId = function(id, playerObject){
+  var playerIdFound = false;
+  for(rosterNum in store.roster){
+    if(store.roster[rosterNum].playerId == id){
+      store.roster[rosterNum] = Object.assign({}, playerObject);
+      playerIdFound = true;
+    }
+  }
+  if(!playerIdFound){
+    store.roster.push(Object.assign({}, playerObject));
+  }
+};
+var removePlayerById = function(id){
+  for(rosterNum in store.roster){
+    if(store.roster[rosterNum].playerId+"" == id+""){
+      store.roster.splice(rosterNum, 1);
+    }
+  }
+};
+
+var fire_updateRosterInfo = function(id, playerObject){
+  db.collection("roster").doc(""+id).set(playerObject);
+};
+var fire_removeRosterPlayer = function(id){
+  console.log(id);
+  db.collection("roster").doc(""+id).delete().then(function() {
+    console.log("Document successfully deleted!");
+}).catch(function(error) {
+    console.error("Error removing document: ", error);
+});
 };

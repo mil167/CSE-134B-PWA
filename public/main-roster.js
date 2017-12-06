@@ -22,8 +22,8 @@ class Team {
 		this.roster = new Roster();
 	}
 
-	addPlayer(name, number,position, matchCount = -1, goals = -1, redCards = -1){
-		this.roster.addPlayer(name, number, position, matchCount, goals, redCards);
+	addPlayer(name, number,position, matchCount = 0, goals = 0, redCards = 0, playerId){
+		this.roster.addPlayer(name, number, position, matchCount, goals, redCards, playerId);
 	}
 	findPlayer(playerId) {
         this.roster.findPlayer(playerId);
@@ -60,8 +60,8 @@ class Roster{
 		return false;
 	}
 
-	addPlayer(name, number, position, matchCount = -1, goals = -1, redCards = -1){
-		let player = new Player(name, number, position, matchCount, goals, redCards);
+	addPlayer(name, number, position, matchCount = -1, goals = -1, redCards = -1, playerId = 0){
+		let player = new Player(name, number, position, matchCount, goals, redCards, playerId);
 		this.roster.push(player);
 		// add ele to array in js uses push
 	}
@@ -72,7 +72,9 @@ class Roster{
 	}
 
 	findPlayer(playerId){
+    console.log(playerId);
 		for(let i = 0; i < this.roster.length; i++){
+      console.log(this.roster[i].playerId);
 			if(this.roster[i].playerId == playerId){
 				return(this.roster[i]);
 			}
@@ -148,7 +150,18 @@ class Roster{
 				if (playerId) {
 	                ConstTeam.currentTeam.editPlayer(playerId,name,number,position);
 	            } else {
-	                ConstTeam.currentTeam.addPlayer(name,number,position);
+                  var fire_uuid = ConstTeam.util.uuid();
+                  console.log(fire_uuid);
+                  fire_updateRosterInfo(fire_uuid, {
+                    "playerId": fire_uuid,
+                    "name": name,
+                    "position": position,
+                    "number": number,
+                    "matchCount": 0,
+                    "goals": 0,
+                    "redCards": 0
+                  });
+	                //ConstTeam.currentTeam.addPlayer(name,number,position, fire_uuid);
 	            }
 	            // according to different playerId, there could be two cases:
 	            //	 the player already exists => editPlayer
@@ -169,8 +182,12 @@ class Roster{
     * for each player, it can be edit, delete or show more infornmation about the player.
     */
 class Player {
-	constructor (name, number, position, matchCount, goals, redCards){
-		this.playerId = ConstTeam.util.uuid();
+	constructor (name, number, position, matchCount, goals, redCards, playerId){
+    this.playerId = playerId;
+    if(playerId == 0){
+      console.log("no player id");
+      this.playerId = ConstTeam.util.uuid();
+    }
 		this.name = name;
 		this.number = number;
 		this.position = position;
@@ -181,13 +198,25 @@ class Player {
 	}
 
 	edit(name, number, position){
-		this.name = name;
-		this.number = number;
-		this.position = position;
+    this.name = name;
+    this.number = number;
+    this.position = position;
+    fire_updateRosterInfo(this.playerId, {
+      "playerId": this.playerId,
+      "name": this.name,
+      "number": this.number,
+      "position": this.position,
+      "archived": this.archived,
+      "matchCount": this.matchCount,
+      "goals": this.goals,
+      "redCards": this.redCards
+    });
+    //setPlayerInfoByPlayerId(this.playerId, this);
 	}
 
 	remove(){
 		this.archived = true;
+    fire_removeRosterPlayer(this.playerId);
 	}
 
 	get(){
@@ -322,7 +351,7 @@ class Player {
         ConstTeam.currentTeam = new Team(store.teamname);
         for (let i = 0; i < store.roster.length; i++) {
             ConstTeam.currentTeam.addPlayer(store.roster[i].name, store.roster[i].number, store.roster[i].position,
-            	store.roster[i].matchCount, store.roster[i].goals, store.roster[i].redCards);
+            	store.roster[i].matchCount, store.roster[i].goals, store.roster[i].redCards, store.roster[i].playerId);
         }
 
         ConstTeam.currentTeam.renderRoster();
@@ -333,3 +362,12 @@ class Player {
         document.querySelector('#statsNav').addEventListener('click', function () { window.location.assign("hw4_home.html") }, false);
     }, false);
 
+    afterRosterUpdate = function(){
+      ConstTeam.currentTeam = new Team(store.teamname);
+      for (let i = 0; i < store.roster.length; i++) {
+          ConstTeam.currentTeam.addPlayer(store.roster[i].name, store.roster[i].number, store.roster[i].position,
+            store.roster[i].matchCount, store.roster[i].goals, store.roster[i].redCards, store.roster[i].playerId);
+      }
+      ConstTeam.currentTeam.renderRoster();
+      console.log(ConstTeam.currentTeam);
+    };
