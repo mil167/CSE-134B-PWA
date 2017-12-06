@@ -3,7 +3,7 @@ h1{
 	font-size: 48pt;
 }
 
-form[name=login]{
+#login{
 	font-size: 20pt;
 	margin: 0 auto;
 	width: 150px;	
