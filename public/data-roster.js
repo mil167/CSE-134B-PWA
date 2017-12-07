@@ -1,4 +1,10 @@
  // defalut data used for roster.js
+var uuid = function () {
+           return ([1e7]+-1e3+-4e3+-8e3+-1e11).replace(/[018]/g, c =>
+           (c ^ crypto.getRandomValues(new Uint8Array(1))[0] & 15 >> c / 4).toString(16)
+           );
+         };
+
  var store = {
     "teamid" : 3,
     "teamname" : "The Bare Bears Team",
@@ -49,44 +55,6 @@
     ],
 
     "schedule":[
-      {
-        "enemyTeam": "Jaguar High",
-        "date": "10/11/2017",
-        "time": "2:00PM",
-        "finished": false,
-        "ourScore": 0,
-        "enemyScore": 0,
-        "won": false,
-        "practice": true,
-        "highlights": [
-
-        ],
-        "vod": "",
-        "hlvod": ""
-      },
-      {
-        "enemyTeam": "Jaguar High",
-        "date": "10/1/2017",
-        "time": "3:00PM",
-        "finished": true,
-        "ourScore": 4,
-        "enemyScore": 3,
-        "won": true,
-        "practice": false,
-        "highlights": [
-          {
-            "time": 0,
-            "desc": "Match begins"
-          },
-          {
-            "time": 4,
-            "desc": "Alex S. from Kitty High scores"
-          }
-        ],
-        "vod": "",
-        "hlvod": ""
-      }
-
     ]
 };
 
@@ -133,6 +101,14 @@ db.collection("roster").onSnapshot( snapshot => {
 });
 db.collection("schedule").onSnapshot( snapshot => {
   snapshot.docChanges.forEach( change => {
+    if(change.type === "added" || change.type === "modified" ){
+      console.log("game edited");
+      editGameById(change.doc.data().id, change.doc.data());
+    }
+    else{
+      console.log("game removed");
+      removeGameById(change.doc.data().id);
+    }
   });
   if(typeof afterScheduleUpdate !== 'undefined'){
     afterScheduleUpdate();
@@ -143,7 +119,9 @@ var getSchedule = function(){
   return store.schedule;
 };
 var createGame = function(){
-  store.schedule.push({
+  var createdGameID = uuid();
+  fire_updateGameInfo(createdGameID, {
+    "id": createdGameID,
     "enemyTeam": "Enemy",
     "date": "date (month/day/year)",
     "time": "time(h:mmAM/PM)",
@@ -158,33 +136,53 @@ var createGame = function(){
     "hlvod": ""
   });
 };
-var createUpTo = function(id){
-  while(!store.schedule[id]){
-    createGame();
+var removeGameById = function(id){
+  console.log("checking " + id);
+  for(gameNum in store.schedule){
+    console.log(store.schedule[gameNum].id);
+    if(store.schedule[gameNum].id == id){
+      console.log("removing");
+      store.schedule.splice(gameNum, 1);
+    }
   }
 };
-var deleteGame = function(id){
-  store.schedule.splice(id, 1);
-};
-var setGame = function(id, newGame){
-  store.schedule[id] = Object.assign({}, newGame);
-  store.schedule[id].highlights = [];
-  for(var num = 0; num < newGame.highlights.length; ++num){
-    store.schedule[id].highlights.push(newGame.highlights[num]);
+var editGameById = function(id, gameObject){
+  var gameIdFound = false;
+  for(gameNum in store.schedule){
+    if(store.schedule[gameNum].id == id){
+      //console.log(gameObject);
+      store.schedule[gameNum] = Object.assign({}, gameObject);
+      store.schedule[gameNum].highlights = [];
+      for(var num = 0; num < gameObject.highlights.length; ++num){
+        store.schedule[gameNum].highlights.push(gameObject.highlights[num]);
+      }
+      gameIdFound = true;
+    }
   }
-};
-var orderHighlightsByTime = function(id){
+  if(!gameIdFound){
+    console.log("not found, adding");
+    store.schedule.push(Object.assign({}, gameObject));
+    store.schedule[store.schedule.length-1].highlights = [];
+    for(var num = 0; num < gameObject.highlights.length; ++num){
+      store.schedule[store.schedule.length-1].highlights.push(gameObject.highlights[num]);
+    }
 
-};
+  }
+}
+var getGameById = function(id){
+  for(gameNum in store.schedule){
+    if(store.schedule[gameNum].id+"" == id+""){
+      return store.schedule[gameNum];
+    }
+  }
+  return 0;
+}
 var clearHighlights = function(id){
   store.schedule[id].highlights = [];
 };
-var deleteHighlight = function(id, highlightNum){
-  store.schedule[id].highlights.splice(highlightNum, 1);
-};
 var addOrEditHighlight = function(id, description){
   store.schedule[id].highlights = description;
-  orderHighlightsByTime();
+  //orderHighlightsByTime();
 };
 var getTeam = function(){
   return store;
@@ -215,6 +213,17 @@ var fire_updateRosterInfo = function(id, playerObject){
 var fire_removeRosterPlayer = function(id){
   console.log(id);
   db.collection("roster").doc(""+id).delete().then(function() {
+    console.log("Document successfully deleted!");
+}).catch(function(error) {
+    console.error("Error removing document: ", error);
+});
+};
+var fire_updateGameInfo = function(id, gameObject){
+  db.collection("schedule").doc(""+id).set(gameObject);
+};
+var fire_removeGame = function(id){
+  console.log(id);
+  db.collection("schedule").doc(""+id).delete().then(function() {
     console.log("Document successfully deleted!");
 }).catch(function(error) {
     console.error("Error removing document: ", error);

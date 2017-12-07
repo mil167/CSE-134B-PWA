@@ -40,7 +40,6 @@ Load time: 359ms to paint
 	       urlParams[decode(match[1])] = decode(match[2]);
 	})();
 </script>
-<script src="data-roster.js"></script>
 
 
   <form id="baseForm" name="baseForm">
@@ -95,9 +94,9 @@ Load time: 359ms to paint
 
 		<script>
 		var deleteHighlight = function(highlightNum){
-			let highlightTable = document.querySelector("#highlightsTable");
+			var highlightTable = document.querySelector("#highlightsTable");
 			highlightTable.removeChild(highlightTable.children[highlightNum]);
-			for(let coutner = 0; coutner < highlightTable.childElementCount; ++coutner){
+			for(var coutner = 0; coutner < highlightTable.childElementCount; ++coutner){
 				highlightTable.children[coutner].children[0].name = "highlightTime " + coutner;
 				highlightTable.children[coutner].children[1].name = "highlightDesc " + coutner;
 				highlightTable.children[coutner].children[2].innerHTML = "<input type='button' value='remove' onclick='deleteHighlight(" + coutner + ")'>";
@@ -115,10 +114,17 @@ Load time: 359ms to paint
 		</ul>
 	</footer>
 
+	<script src="https://www.gstatic.com/firebasejs/4.7.0/firebase.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/4.6.0/firebase-firestore.js"></script>
+	<script src="data-roster.js"></script>
+
   <script>
     var gameRender = function(){
-      let pageMatch = getSchedule()[urlParams["matchID"]];
-      let pageTeam = getTeam();
+			var pageMatch = getGameById(urlParams["matchID"]);
+      var pageTeam = getTeam();
+
+			console.log("in render");
+
       document.baseForm.enemyTeam.value = pageMatch.enemyTeam;
       document.baseForm.date.value = pageMatch.date;
       document.baseForm.time.value = pageMatch.time;
@@ -130,6 +136,7 @@ Load time: 359ms to paint
       document.baseForm.hlvod.value = pageMatch.hlvod;
 
 			let highlightTable = document.querySelector("#highlightsTable");
+			highlightTable.innerHTML = "";
       for(highlightNum in pageMatch.highlights){
 				let highlight = pageMatch.highlights[highlightNum];
 				let timeInD = document.createElement('td');
@@ -156,10 +163,13 @@ Load time: 359ms to paint
 
 				highlightTable.appendChild(highlightRow);
 			}
-    }
-    gameRender();
+    };
+
+		var afterScheduleUpdate = function(){ gameRender(); };
+
 		var gameUpdate = function(){
 			let gameToSend = {};
+			gameToSend.id = urlParams["matchID"];
 			gameToSend.enemyTeam = document.baseForm.enemyTeam.value;
 			gameToSend.date = document.baseForm.date.value;
 			gameToSend.time = document.baseForm.time.value;
@@ -167,6 +177,7 @@ Load time: 359ms to paint
 			gameToSend.finished = document.baseForm.finished.checked;
 			gameToSend.ourScore = document.baseForm.ourScore.value;
 			gameToSend.enemyScore = document.baseForm.enemyScore.value;
+			gameToSend.won = gameToSend.ourScore > gameToSend.enemyScore;
 			gameToSend.vod = document.baseForm.vod.value;
 			gameToSend.hlvod = document.baseForm.hlvod.value;
 			gameToSend.highlights = [];
@@ -175,10 +186,10 @@ Load time: 359ms to paint
 				let highlightRow = highlightTable.children[high_count];
 				//let timeIn = highlightRow.firstElementChild.innerHTML;
 				//let descIn = highlightRow.lastElementChild.innerHTML;
-				gameToSend.highlights.push({"time": highlightRow.firstElementChild.firstElementChild.value, "desc": highlightRow.lastElementChild.firstElementChild.value});
+				gameToSend.highlights.push({"time": highlightRow.firstElementChild.firstElementChild.value, "desc": highlightRow.firstElementChild.nextSibling.firstElementChild.value});
 			}
-			setGame(urlParams["matchID"], gameToSend);
-		}
+			fire_updateGameInfo(urlParams["matchID"], gameToSend);
+		};
   </script>
 </body>
 </html>

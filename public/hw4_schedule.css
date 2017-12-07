@@ -18,7 +18,7 @@
 	font-size:4em;
 }
 
-.matchLog li{
+.matchLog > ol > li{
 	font-size: 1.5em;
 	margin: 0.5em 0;
 	padding: 3% 0;
@@ -28,10 +28,16 @@
 	display: flex;
 }
 
-.matchLog li > div{
+.matchLog li > div > div{
 	float: right;
 	display: flex;
 	margin: auto 2% auto 0;
+}
+
+.matchLog li > div > form > input{
+	width: 95%;
+	padding: 4px 5px;
+	margin: 0.5%;
 }
 
 .matchLog li > p{

@@ -40,7 +40,6 @@ Load time: 359ms to paint
 	       urlParams[decode(match[1])] = decode(match[2]);
 	})();
 </script>
-<script src="data-roster.js"></script>
 
 
 	<h1 id=match></h1>
@@ -68,11 +67,16 @@ Load time: 359ms to paint
 		</ul>
 	</footer>
 
+	<script src="https://www.gstatic.com/firebasejs/4.7.0/firebase.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/4.6.0/firebase-firestore.js"></script>
+	<script src="data-roster.js"></script>
+
+
   <script>
     var gamestatsRender = function(){
-      let pageMatch = getSchedule()[urlParams["matchID"]];
-			let pageTeam = getTeam();
-      if(pageMatch.finished){
+      var pageMatch = getGameById(urlParams["matchID"]);
+			var pageTeam = getTeam();
+      if(!pageMatch.practice){
         document.querySelector("#match").innerHTML = "VS " + pageMatch.enemyTeam + " " + pageMatch.date;
         document.querySelector("#score").innerHTML = "" + pageTeam.teamname + " " + pageMatch.ourScore + " - " + pageMatch.enemyTeam + " " + pageMatch.enemyScore;
         document.querySelector("#score").className = pageMatch.won ? "won" : "lost";
@@ -117,14 +121,11 @@ Load time: 359ms to paint
           document.querySelector("#hlvod").href = pageMatch.hlvod;
         }
       }
-      else if(pageMatch.practice){
+      else{
         document.querySelector("#match").innerHTML = "Practice " + " " + pageMatch.date;
       }
-      else{
-
-      }
     }
-    gamestatsRender();
+    var afterScheduleUpdate = function(){gamestatsRender();};
   </script>
 </body>
 </html>
