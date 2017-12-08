@@ -23,41 +23,44 @@
 	<p id="winloss"></p>
 	<p>Games remaining: </p>
 	<p id="gameleft"></p>
+	<iframe src="hw4_gamestats.html" id="hw4gs" style="display:none"></iframe>
 
 	<footer>
 		<hr>
 		<ul>
 		 <li><a href="hw4_home.html">Home</a></li>
-		 <li><a href="main-roster.html">Roster</a></li>
+		 <li><a href="hw4_roster1.html">Roster</a></li>
 		 <li><a href="hw4_schedule.html">Schedule</a></li>
 		 <li id="logout"><a href="hw4_login.html">Logout</a></li>
 		</ul>
 	</footer>
-
+	<script src="https://www.gstatic.com/firebasejs/4.7.0/firebase.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/4.6.0/firebase-firestore.js"></script>
 	<script src="data-roster.js"></script>
 	<script>
+		var afterScheduleUpdate = function(){
+			var numpractice = 0;
 			var games = getSchedule();
 			var win = 0;
 			var lose = 0;
+			
 			for(var i = 0; i < games.length; i++){
-				if(games[i].practice == false){
-					if(games[i].won == true) {
-						win++;
-					}
-					else {
-						lose++;
-					}
+			if(!games[i].practice) {
+				if(games[i].won == true) {
+					win++;
+				}
+				else {
+					lose++;
 				}
 			}
-
-			document.getElementById("winloss").innerHTML = win.toString() +
-
-"-" + lose.toString();
-			var gamesleft = 10 - games.length;
-			document.getElementById("gameleft").innerHTML =
-
-gamesleft.toString();
-
+			else{
+				numpractice++;
+			}
+			}
+			document.getElementById("winloss").innerHTML = win.toString() + "-" + lose.toString();
+			gamesleft = 10 - games.length + numpractice;			
+			document.getElementById("gameleft").innerHTML = gamesleft.toString();
+	}
 	</script>
 </body>
 </html>
