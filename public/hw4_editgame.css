@@ -3,16 +3,13 @@
 }
 
 p, a{
-	font-size:1.8em;
 }
 
 input{
-  font-size:1em;
   text-align: left;
 }
 
 .optionsButton{
-  font-size:2em;
 }
 
 body{
@@ -28,15 +25,12 @@ h1{
   position:fixed;
   -webkit-margin-before:unset;
   padding:0.5em 0;
-  font-size:4em;
 }
 
 h2{
-	font-size: 3em;
 }
 
 h3{
-	font-size: 2em;
 }
 
 .won{
@@ -92,7 +86,6 @@ footer{
     height: 40%;
     width: 100%;
     font-family: 'Apple Chancery';
-    font-size: 1.5em;
    /* border: 1px solid blue;*/
 }
 

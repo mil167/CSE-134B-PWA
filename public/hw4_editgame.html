@@ -5,7 +5,7 @@ Load time: 359ms to paint
  -->
 
 <!DOCTYPE HTML>
-<html>
+<html lang="en-us">
 <head>
 	<title>Game Stats</title>
 	<link rel="stylesheet" href="hw4_editgame.css">
@@ -165,7 +165,7 @@ Load time: 359ms to paint
 			gameToSend.finished = document.baseForm.finished.checked;
 			gameToSend.ourScore = document.baseForm.ourScore.value;
 			gameToSend.enemyScore = document.baseForm.enemyScore.value;
-			gameToSend.won = gameToSend.ourScore > gameToSend.enemyScore;
+			gameToSend.won = gameToSend.ourScore > gameToSend.enemyScore && !gameToSend.practice;
 			gameToSend.vod = document.baseForm.vod.value;
 			gameToSend.hlvod = document.baseForm.hlvod.value;
 			gameToSend.highlights = [];
