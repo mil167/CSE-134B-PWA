@@ -1,17 +1,21 @@
 <!DOCTYPE HTML>
-<html>
+<html lang="en">
 <head>
 	<title>New User Registration</title>
+	<link rel="manifest" href="/manifest.json">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="theme-color" content="#663399">
 	<link rel="stylesheet" href="hw4_register.min.css">
 </head>
 <body>
 	<h1>New User Info</h1>
 	<form name="confirm">
 		Enter email address: <br>
+		<label for="email" style="display:none">Email</label>
 		<input type="text" name="email">
 		<br>
 		Choose a password: <br>
+		<label for="password" style="display:none">Password</label>
 		<input type="password" name="password">
 		<br><br>
 		<input type="submit" onclick="regUser(this.form)" value="OK">
@@ -43,7 +47,7 @@
   				var errorCode = error.code;
   				var errorMessage = error.message;
 				if(errorCode == 'auth/invalid-email') {
-					window.alert('Email already registered!');
+					window.alert(errorMessage);
 				}
 				else {
 					window.alert(errorMessage);

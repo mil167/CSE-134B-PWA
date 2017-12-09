@@ -1,17 +1,21 @@
 <!DOCTYPE HTML>
-<html>
+<html lang="en">
 <head>
 	<title>Welcome to TeamWatch!</title>
+	<link rel="manifest" href="/manifest.json">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="theme-color" content="#663399">
 	<link rel="stylesheet" href="hw4_login.min.css">
 </head>
 <body>
 	<h1>TeamWatch</h1>
 	<div id="login">
 		Email:<br>
+		<label for="email" style="display:none">Email</label>
 		<input type="text" name="email" id="email">
 		<br>
 		Password:<br>
+		<label for="password" style="display:none">Password</label>
 		<input type="password" name="pw" id="pw">
 		<br><br>
 		<input type="submit" onclick="loginUser()" value="Log in">
