@@ -33,78 +33,78 @@ Load time: 359ms to paint
 	</footer>
 
 
-	<script src="firebase_and_firestore.js"></script>
+	<script src="firebase_and_firestore.js.gz"></script>
 
 
 <script src="data-roster.js"></script>
 
-	<script>
-		var scheduleRender = function(){
-			var view = document.querySelector('#view');
-			view.innerHTML = "";
-			for(idnumber in getSchedule()){
-				var scheduledGame = getSchedule()[idnumber];
-				var insideParagraph = document.createElement('p');
-				if(scheduledGame.practice){
-						insideParagraph.innerHTML = "Practice " + scheduledGame.date + " " + scheduledGame.time;
+<script>
+	var scheduleRender = function(){
+		var view = document.querySelector('#view');
+		view.innerHTML = "";
+		for(idnumber in getSchedule()){
+			var scheduledGame = getSchedule()[idnumber];
+			var insideParagraph = document.createElement('p');
+			if(scheduledGame.practice){
+					insideParagraph.innerHTML = "Practice " + scheduledGame.date + " " + scheduledGame.time;
+			}
+			else{
+				insideParagraph.innerHTML = "VS " + scheduledGame.enemyTeam + "&nbsp;" + scheduledGame.date + "&nbsp;" + scheduledGame.time;
+			}
+			var pageForm = document.createElement('form');
+			pageForm.action = "hw4_gamestats.html";
+			pageForm.method = "GET";
+			pageForm.innerHTML = "<input type='hidden' name='matchID' value= '" + scheduledGame.id + "'>";
+			var linkToGamePage = document.createElement('input');
+			linkToGamePage.type = "submit";
+			linkToGamePage.value = "Overview";
+			//linkToGamePage.href = "gamestats/" + scheduledGame.id + ".html";
+			//linkToGamePage.innerHTML = "Overview";
+			pageForm.appendChild(linkToGamePage);
+
+			var pageEdit = document.createElement('form');
+			pageEdit.action = "hw4_editgame.html";
+			pageEdit.method = "GET";
+			pageEdit.innerHTML = "<input type='hidden' name='matchID' value= '" + scheduledGame.id + "'>";
+			var linkToEditPage = document.createElement('input');
+			linkToEditPage.type = "submit";
+			linkToEditPage.value = "Edit";
+
+			var pageRemove = document.createElement('form');
+			pageRemove.action = "";
+			pageRemove.innerHTML = "<input type='button' value='Delete' onclick='fire_removeGame(\"" + scheduledGame.id + "\")'>"
+
+			//linkToGamePage.href = "gamestats/" + scheduledGame.id + ".html";
+			//linkToGamePage.innerHTML = "Overview";
+			pageEdit.appendChild(linkToEditPage);
+			//insideParagraph.appendChild(pageForm);
+			var buttonsButtonsDiv = document.createElement('div');
+			var buttonsDiv = document.createElement('div');
+			buttonsDiv.appendChild(pageForm);
+			buttonsDiv.appendChild(pageEdit);
+			buttonsButtonsDiv.appendChild(buttonsDiv);
+			buttonsButtonsDiv.appendChild(pageRemove);
+
+			var gameElement = document.createElement('li');
+			gameElement.appendChild(insideParagraph);
+			gameElement.appendChild(buttonsButtonsDiv);
+			if(scheduledGame.finished){
+				if(scheduledGame.won){
+					gameElement.className = "matchWon";
 				}
 				else{
-					insideParagraph.innerHTML = "VS " + scheduledGame.enemyTeam + "&nbsp;" + scheduledGame.date + "&nbsp;" + scheduledGame.time;
+					gameElement.className = "matchLost";
 				}
-				var pageForm = document.createElement('form');
-				pageForm.action = "hw4_gamestats.html";
-				pageForm.method = "GET";
-				pageForm.innerHTML = "<input type='hidden' name='matchID' value= '" + scheduledGame.id + "'>";
-				var linkToGamePage = document.createElement('input');
-				linkToGamePage.type = "submit";
-				linkToGamePage.value = "Overview";
-				//linkToGamePage.href = "gamestats/" + scheduledGame.id + ".html";
-				//linkToGamePage.innerHTML = "Overview";
-				pageForm.appendChild(linkToGamePage);
-
-				var pageEdit = document.createElement('form');
-				pageEdit.action = "hw4_editgame.html";
-				pageEdit.method = "GET";
-				pageEdit.innerHTML = "<input type='hidden' name='matchID' value= '" + scheduledGame.id + "'>";
-				var linkToEditPage = document.createElement('input');
-				linkToEditPage.type = "submit";
-				linkToEditPage.value = "Edit";
-
-				var pageRemove = document.createElement('form');
-				pageRemove.action = "";
-				pageRemove.innerHTML = "<input type='button' value='Delete' onclick='fire_removeGame(\"" + scheduledGame.id + "\")'>"
-
-				//linkToGamePage.href = "gamestats/" + scheduledGame.id + ".html";
-				//linkToGamePage.innerHTML = "Overview";
-				pageEdit.appendChild(linkToEditPage);
-				//insideParagraph.appendChild(pageForm);
-				var buttonsButtonsDiv = document.createElement('div');
-				var buttonsDiv = document.createElement('div');
-				buttonsDiv.appendChild(pageForm);
-				buttonsDiv.appendChild(pageEdit);
-				buttonsButtonsDiv.appendChild(buttonsDiv);
-				buttonsButtonsDiv.appendChild(pageRemove);
-
-				var gameElement = document.createElement('li');
-				gameElement.appendChild(insideParagraph);
-				gameElement.appendChild(buttonsButtonsDiv);
-				if(scheduledGame.finished){
-					if(scheduledGame.won){
-						gameElement.className = "matchWon";
-					}
-					else{
-						gameElement.className = "matchLost";
-					}
-				}
-				view.appendChild(gameElement);
 			}
-		};
-		var afterScheduleUpdate = function(){scheduleRender();};
-		var createAndUpdate = function(){
-			createGame();
-			//scheduleRender();
-		};
-	</script>
+			view.appendChild(gameElement);
+		}
+	};
+	var afterScheduleUpdate = function(){scheduleRender();};
+	var createAndUpdate = function(){
+		createGame();
+		//scheduleRender();
+	};
+</script>
 
 </body>
 </html>

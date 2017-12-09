@@ -1,5 +1,5 @@
 {
-  "short_name": "SoccerStats",
+  "short_name": "SoccStats",
   "name": "CSE 134B Soccer Stats",
   "icons": [
     {
@@ -19,6 +19,8 @@
     }
   ],
   "start_url": "hw4_login.html?launcher=true",
-  "theme_color": "#663399"
-
+  "background_color": "#663399",
+  "theme_color": "#663399",
+  "display": "standalone",
+  "orientation": "portrait"
 }
