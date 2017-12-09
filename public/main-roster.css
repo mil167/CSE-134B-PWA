@@ -3,7 +3,7 @@
 ul li {list-style-type: none;
        margin-bottom: .5em;}
 
-.player {width: 50vw;}
+.player {width: 70vw;}
 .player:hover {outline : 1px dashed black;}
 .player:hover div.recordControls {visibility: visible }
 
@@ -12,7 +12,7 @@ ul li {list-style-type: none;
 .editBtn {cursor: pointer; color: blue;}
 
 .infoBtn {
-	cursor: context-menu; 
+	cursor: context-menu;
 	color: red;
 	font-family: 'Helvetica';
 }

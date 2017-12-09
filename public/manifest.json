@@ -3,22 +3,27 @@
   "name": "CSE 134B Soccer Stats",
   "icons": [
     {
-      "src": "launcher-icon-1x.png",
+      "src": "icon_1x.png",
       "type": "image/png",
       "sizes": "48x48"
     },
     {
-      "src": "launcher-icon-2x.png",
+      "src": "icon_2x.png",
       "type": "image/png",
       "sizes": "96x96"
     },
     {
-      "src": "launcher-icon-4x.png",
+      "src": "icon_4x.png",
       "type": "image/png",
       "sizes": "192x192"
+    },
+    {
+      "src": "icon_splash.png",
+      "type": "image/png",
+      "sizes": "1024x1024"
     }
   ],
-  "start_url": "hw4_login.html?launcher=true",
+  "start_url": "/hw4_login.html?launcher=true",
   "background_color": "#663399",
   "theme_color": "#663399",
   "display": "standalone",

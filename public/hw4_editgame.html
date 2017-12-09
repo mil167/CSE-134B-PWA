@@ -8,8 +8,10 @@ Load time: 359ms to paint
 <html lang="en-us">
 <head>
 	<title>Game Stats</title>
-	<link rel="stylesheet" href="hw4_editgame.css">
+	<link rel="stylesheet" href="hw4_editgame.min.css">
+	<link rel="manifest" href="/manifest.json">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="theme-color" content="#663399">
 </head>
 <body>
 <script>
@@ -102,9 +104,8 @@ Load time: 359ms to paint
 		</ul>
 	</footer>
 
-	<script src="https://www.gstatic.com/firebasejs/4.7.0/firebase.js"></script>
-	<script src="https://www.gstatic.com/firebasejs/4.6.0/firebase-firestore.js"></script>
-	<script src="data-roster.js"></script>
+	<script src="firebase_and_firestore.js.gz"></script>
+	<script src="data-roster.min.js"></script>
 
   <script>
     var gameRender = function(){

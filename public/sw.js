@@ -1,25 +1,28 @@
 var CACHE_NAME = 'my-site-cache-v1';
 var urlsToCache = [
   'hw4_login.html',
-  'hw4_login.css',
+  'hw4_login.min.css',
   'hw4_home.html',
-  'hw4_home.css',
+  'hw4_home.min.css',
   'hw4_confirm.html',
   'hw4_editgame.html',
-  'hw4_editgame.css',
+  'hw4_editgame.min.css',
   'hw4_forgot.html',
-  'hw4_forgot.css',
+  'hw4_forgot.min.css',
   'hw4_gamestats.html',
-  'hw4_gamestats.css',
+  'hw4_gamestats.min.css',
   'hw4_register.html',
   'hw4_schedule.html',
-  'hw4_schedule.css',
+  'hw4_schedule.min.css',
   'main-roster.html',
-  'main-roster.css',
-  'main-roster.js',
-  'data-roster.js',
+  'main-roster.min.css',
+  'main-roster.min.js',
+  'data-roster.min.js',
   'manifest.json',
-  'sw.js'
+  'icon_4x.png',
+  'icon_2x.png',
+  'icon_1x.png',
+  'icon-splash.png'
 ];
 
 self.addEventListener('install', function(event) {

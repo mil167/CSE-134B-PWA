@@ -3,7 +3,7 @@
 <head>
 	<title>New User Registration</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="stylesheet" href="hw4_register.css">
+	<link rel="stylesheet" href="hw4_register.min.css">
 </head>
 <body>
 	<h1>New User Info</h1>
@@ -17,11 +17,13 @@
 		<input type="submit" onclick="regUser(this.form)" value="OK">
 		<p id="demo"></p>
 	</form>
-	
+
 	<br><br>
 	<p>Click <a href="hw4_login.html">here</a> to go back to the login screen.</p>
 
-	<script src="https://www.gstatic.com/firebasejs/4.7.0/firebase.js"></script>
+	<script src="firebase_and_firestore.js.gz"></script>
+	<script src="data-roster.min.js"></script>
+	<!--
 	<script>
   	//Initialize Firebase
  		 var config = {
@@ -34,6 +36,7 @@
   	};
   	firebase.initializeApp(config);
 	</script>
+-->
 	<script>
 		function regUser(form){
 			firebase.auth().createUserWithEmailAndPassword(form.email.value,form.password.value).catch(function(error) {
@@ -48,6 +51,6 @@
 				console.log(error);
 			});
 		}
-	</script>	
+	</script>
 </body>
 </html>

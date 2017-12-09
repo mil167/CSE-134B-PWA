@@ -1,28 +1,26 @@
-[debug] [2017-12-08T23:00:06.986Z] ----------------------------------------------------------------------
-[debug] [2017-12-08T23:00:06.987Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\Admin\AppData\Roaming\npm\node_modules\firebase-tools\bin\firebase serve
-[debug] [2017-12-08T23:00:06.987Z] CLI Version:   3.13.1
-[debug] [2017-12-08T23:00:06.987Z] Platform:      win32
-[debug] [2017-12-08T23:00:06.987Z] Node Version:  v8.9.1
-[debug] [2017-12-08T23:00:06.987Z] Time:          Fri Dec 08 2017 15:00:06 GMT-0800 (Pacific Standard Time)
-[debug] [2017-12-08T23:00:06.987Z] ----------------------------------------------------------------------
+[debug] [2017-12-09T02:08:34.867Z] ----------------------------------------------------------------------
+[debug] [2017-12-09T02:08:34.869Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\Admin\AppData\Roaming\npm\node_modules\firebase-tools\bin\firebase deploy
+[debug] [2017-12-09T02:08:34.869Z] CLI Version:   3.13.1
+[debug] [2017-12-09T02:08:34.869Z] Platform:      win32
+[debug] [2017-12-09T02:08:34.869Z] Node Version:  v8.9.1
+[debug] [2017-12-09T02:08:34.869Z] Time:          Fri Dec 08 2017 18:08:34 GMT-0800 (Pacific Standard Time)
+[debug] [2017-12-09T02:08:34.869Z] ----------------------------------------------------------------------
 [debug] 
-[debug] [2017-12-08T23:00:06.996Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
-[debug] [2017-12-08T23:00:06.996Z] > authorizing via signed-in user
-[debug] [2017-12-08T23:00:06.997Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/projects/catwebsite-7bf63  
- Fri Dec 08 2017 15:00:06 GMT-0800 (Pacific Standard Time)
-[debug] [2017-12-08T23:00:07.557Z] <<< HTTP RESPONSE 200
-[debug] [2017-12-08T23:00:07.558Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/database/catwebsite-7bf63/tokens  
- Fri Dec 08 2017 15:00:07 GMT-0800 (Pacific Standard Time)
-[debug] [2017-12-08T23:00:08.003Z] <<< HTTP RESPONSE 200
+[debug] [2017-12-09T02:08:34.879Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2017-12-09T02:08:34.879Z] > authorizing via signed-in user
+[debug] [2017-12-09T02:08:34.880Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/projects/catwebsite-7bf63  
+ Fri Dec 08 2017 18:08:34 GMT-0800 (Pacific Standard Time)
+[debug] [2017-12-09T02:08:35.575Z] <<< HTTP RESPONSE 200
+[debug] [2017-12-09T02:08:35.575Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/database/catwebsite-7bf63/tokens  
+ Fri Dec 08 2017 18:08:35 GMT-0800 (Pacific Standard Time)
+[debug] [2017-12-09T02:08:35.982Z] <<< HTTP RESPONSE 200
+[info] 1
 [info] 
-[info] === Serving from 'F:\Desktop\Schoolwork\CatWebsite'...
+[info] === Deploying to 'catwebsite-7bf63'...
 [info] 
-[debug] [2017-12-08T23:00:08.006Z] >>> HTTP REQUEST GET https://cloudresourcemanager.googleapis.com/v1/projects/catwebsite-7bf63  
- Fri Dec 08 2017 15:00:08 GMT-0800 (Pacific Standard Time)
-[debug] [2017-12-08T23:00:08.457Z] <<< HTTP RESPONSE 200
-[debug] [2017-12-08T23:00:08.457Z] >>> HTTP REQUEST GET https://mobilesdk-pa.googleapis.com/v1/projects/505732270795/clients/_:getWebAppConfig  
- Fri Dec 08 2017 15:00:08 GMT-0800 (Pacific Standard Time)
-[debug] [2017-12-08T23:00:09.026Z] <<< HTTP RESPONSE 200
-[info] i  hosting: Serving hosting files from: public
-[info] +  hosting: Local server: http://localhost:5000
-
+[info] i  deploying hosting
+[info] i  hosting: preparing public directory for upload...
+[debug] [2017-12-09T02:08:38.377Z] >>> HTTP REQUEST PUT https://deploy.firebase.com/v1/hosting/catwebsite-7bf63/uploads/-L-t10OKvGny4y71RGe1?fileCount=141&message=  
+ Fri Dec 08 2017 18:08:38 GMT-0800 (Pacific Standard Time)
+[debug] [2017-12-09T02:08:47.795Z] <<< HTTP RESPONSE 200
+[debug] [2017-12-09T02:08:47.796Z] [hosting] .tgz uploaded successfully, waiting for extraction
